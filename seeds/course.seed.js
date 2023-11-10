@@ -44,4 +44,6 @@ const connection = async (next) => {
     next(error);
   }
 };
-connection();
+
+
+module.exports = connection

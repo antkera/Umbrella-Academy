@@ -21,7 +21,7 @@ const enrolment = [
   },
 ];
 const MONGO_URI = "mongodb://127.0.0.1:27017/Umbrella-academy";
-const connection = async (next) => {
+const connection = async () => {
   try {
     await mongoose.connect(MONGO_URI);
     console.log("Estas conectado a la BD");
@@ -30,7 +30,10 @@ const connection = async (next) => {
     await mongoose.disconnect();
     console.log("Cerrada la conexión a BD");
   } catch (error) {
-    next(error);
+    console.log(error);
   }
-};
+}
+
 connection();
+
+module.exports = connection

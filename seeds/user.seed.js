@@ -63,4 +63,4 @@ const createSeeds = async () => {
   }
 };
 
-createSeeds();
+module.exports = createSeeds;
