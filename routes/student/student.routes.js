@@ -10,6 +10,11 @@ router.get("/", (req, res, next) => {
     res.render("student/home");
 } )
 
+// GET "student/courses" => renderiza la pagina courses del estudiante 
+router.get("/courses", (req, res, next) => {
+    res.render("student/courses");
+} )
+
 
 
 
