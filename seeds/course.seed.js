@@ -45,5 +45,5 @@ const connection = async (next) => {
   }
 };
 
-
-module.exports = connection
+connection();
+module.exports = connection;

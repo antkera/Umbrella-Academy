@@ -62,5 +62,6 @@ const createSeeds = async () => {
     throw new Error(error);
   }
 };
+createSeeds();
 
 module.exports = createSeeds;
