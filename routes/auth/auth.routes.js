@@ -19,7 +19,6 @@ router.post("/login", async (req, res, next) => {
     res.status(400).render("auth/login", {
       errorMessage: "All the fields have to be filled",
       email,
-      password,
     });
     return;
   }
