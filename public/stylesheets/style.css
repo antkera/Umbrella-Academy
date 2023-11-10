@@ -10,3 +10,14 @@ a {
 h1 {
   color: 15px;
 }
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.error {
+  color: red;
+}

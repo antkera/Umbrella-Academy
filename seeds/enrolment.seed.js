@@ -1,22 +1,23 @@
 const mongoose = require("mongoose");
 const Enrolment = require("../models/Enrolment.model");
 const User = require("../models/User.model");
+const Course = require("../models/Course.model");
 
 const enrolment = [
   {
-    userId: "654e26856004f9c7971bb936",
+    userId: "654e59ac7d146f59e946a437",
     courseId: "654e266e8704d3dfc7efa836",
-    roleInCourse: "teacher",
+    roleInCourse: "editingteacher",
     status: "active",
   },
   {
-    userId: "654e26856004f9c7971bb935",
+    userId: "654e59ac7d146f59e946a436",
     courseId: "654e266e8704d3dfc7efa836",
     roleInCourse: "student",
     status: "active",
   },
   {
-    userId: "654e26856004f9c7971bb934",
+    userId: "654e59ac7d146f59e946a435",
     courseId: "654e266e8704d3dfc7efa836",
     roleInCourse: "manager",
     status: "active",
@@ -27,13 +28,19 @@ const connection = async () => {
   try {
     await mongoose.connect(MONGO_URI);
     console.log("Estas conectado a la BD");
+    // Asignar los userId y courseId para las matriculaciones según los datos de la BD
     const allEnrolments = await Enrolment.insertMany(enrolment);
-    for (let i = 0; i < allEnrolments.length; i++) {
-      //   User.findByIdAndUpdate(allEnrolments[i].userId, {
-      //     enrolments: new ObjectId(allEnrolments[i]._id),
-      //   });
-      let user = User.findById(allEnrolments[i].userId);
-      console.log(user.paths);
+    for (const enrolment of allEnrolments) {
+      let userId = enrolment.userId;
+      let courseId = enrolment.courseId;
+      let user = await User.findById(userId);
+      let course = await Course.findById(courseId);
+      await User.findByIdAndUpdate(user.id, {
+        enrolments: enrolment,
+      });
+      await Course.findByIdAndUpdate(course.id, {
+        enrolments: enrolment,
+      });
     }
     console.log("Añadidos todos los enrolments");
     await mongoose.disconnect();
@@ -41,8 +48,8 @@ const connection = async () => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 connection();
 
-module.exports = connection
+module.exports = connection;

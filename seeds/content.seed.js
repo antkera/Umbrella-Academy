@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Content = require("../models/Content.model");
+const Course = require("../models/Course.model");
 
 const content = [
   {
@@ -40,12 +41,20 @@ const connection = async (next) => {
   try {
     await mongoose.connect(MONGO_URI);
     console.log("Estas conectado a la BD");
-    await Content.insertMany(content);
+    const allContents = await Content.insertMany(content);
+    for (const content of allContents) {
+      // Insertar el id de un curso de la base de datos para cargarlo con contenidos
+      await Course.findByIdAndUpdate("654e266e8704d3dfc7efa836", {
+        contents: content,
+      });
+    }
     console.log("Añadidos todos los contenidos");
     await mongoose.disconnect();
     console.log("Cerrada la conexión a BD");
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
-module.exports = connection
+
+connection();
+module.exports = connection;
