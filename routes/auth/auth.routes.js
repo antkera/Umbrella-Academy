@@ -85,30 +85,26 @@ router.post("/register", async (req, res, next) => {
   const { firstName, lastName, phone, age, email, password, secondPassword } =
     req.body;
   if (password !== secondPassword) {
-    res
-      .status(400)
-      .render("auth/register", {
-        firstName,
-        lastName,
-        phone,
-        age,
-        email,
-        erroMatchrPaswordMessage: "Both passwords must be the same.",
-      });
+    res.status(400).render("auth/register", {
+      firstName,
+      lastName,
+      phone,
+      age,
+      email,
+      erroMatchrPaswordMessage: "Both passwords must be the same.",
+    });
 
     return;
   }
   if (!firstName || !lastName || !email || !password) {
-    res
-      .status(400)
-      .render("auth/register", {
-        firstName,
-        lastName,
-        phone,
-        age,
-        email,
-        errorFullfillMessage: "The first three fields must be filled in",
-      });
+    res.status(400).render("auth/register", {
+      firstName,
+      lastName,
+      phone,
+      age,
+      email,
+      errorFullfillMessage: "The first three fields must be filled in",
+    });
     return;
   }
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
@@ -126,23 +122,26 @@ router.post("/register", async (req, res, next) => {
   }
   const emailRegex =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
-    if(!emailRegex.test(email)) {
-      res.status(400).render("auth/register", {
-        firstName, lastName, phone, age, email, 
-          errorMailRegexMessage:
-          "Email is not valid. Please enter a valid email address"
-      });
-      return;
-    }
+  if (!emailRegex.test(email)) {
+    res.status(400).render("auth/register", {
+      firstName,
+      lastName,
+      phone,
+      age,
+      email,
+      errorMailRegexMessage:
+        "Email is not valid. Please enter a valid email address",
+    });
+    return;
+  }
 
-    try {
-       await User.create({firstName, lastName, phone, age, email, password})
-       console.log("usuario creado")
-    } catch (error) {
-        next(error)
-    }
+  try {
+    await User.create({ firstName, lastName, phone, age, email, password });
+    console.log("usuario creado");
+  } catch (error) {
+    next(error);
+  }
 
-  // console.log(req.body);
   res.redirect("/");
 });
 
@@ -153,15 +152,5 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
-    console.log(req.body);
-    res.redirect("/")
-
-
-
-
-    
-        
-    
-})
 
 module.exports = router;
