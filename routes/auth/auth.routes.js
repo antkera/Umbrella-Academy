@@ -126,25 +126,21 @@ router.post("/register", async (req, res, next) => {
   }
   const emailRegex =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
-  if (!emailRegex.test(email)) {
-    res.status(400).render("auth/register", {
-      firstName,
-      lastName,
-      phone,
-      age,
-      email,
-      errorMailRegexMessage:
-        "Email is not valid. Please enter a valid email address",
-    });
-    return;
-  }
+    if(!emailRegex.test(email)) {
+      res.status(400).render("auth/register", {
+        firstName, lastName, phone, age, email, 
+          errorMailRegexMessage:
+          "Email is not valid. Please enter a valid email address"
+      });
+      return;
+    }
 
-  // try {
-  //    await User.create({firstName, lastName, phone, age, email, password})
-
-  // } catch (error) {
-  //     next(error)
-  // }
+    try {
+       await User.create({firstName, lastName, phone, age, email, password})
+       console.log("usuario creado")
+    } catch (error) {
+        next(error)
+    }
 
   // console.log(req.body);
   res.redirect("/");
@@ -157,5 +153,15 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+    console.log(req.body);
+    res.redirect("/")
+
+
+
+
+    
+        
+    
+})
 
 module.exports = router;

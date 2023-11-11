@@ -34,7 +34,7 @@ const userSchema = new Schema(
     educativeLevel: {
       type: String,
       enum: ["1º ESO", "2º ESO", "3º ESO", "4º ESO", "Not asigned"],
-      default: "",
+      default: "Not asigned",
     },
     profilePic: String,
     enrolments: [
