@@ -115,20 +115,15 @@ const passwordRegex =
       });
       return;
     }
-    
-    
-    
-    
-    
-    
-    // try {
-    //    await User.create({firstName, lastName, phone, age, email, password})
-       
-    // } catch (error) {
-    //     next(error)
-    // }
 
-    // console.log(req.body);
+    try {
+       await User.create({firstName, lastName, phone, age, email, password})
+       console.log("usuario creado")
+    } catch (error) {
+        next(error)
+    }
+
+    console.log(req.body);
     res.redirect("/")
 
 
