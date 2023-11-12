@@ -24,7 +24,6 @@ router.get("/users", async(req, res, next) => {
     try {
         const arrUsers = await User.find();
         res.render("admin/users", {arrUsers})
-        console.log({arrUsers: arrUsers})
     } catch (error) {
         next(error)
     }
@@ -33,8 +32,30 @@ router.get("/users", async(req, res, next) => {
 })
 
 
+// GET "admin/users/:id/edit/" => renderiza un formulario para editar el usuario por id.
 
-// POST "admin/:id/edit/" => recibe la id de un usuario para modificarlo
+router.get("/users/:id/edit", async(req, res, next) => {
+    console.log("hola")
+    console.log(req.params.id)
+try {
+    const {firstName, lastName, phone, age, email, educativeLevel, enrolments, role} = await User.findById(req.params.id)
+    console.log({firstName, lastName, phone, age, email, educativeLevel, enrolments, role})
+    res.render("admin/usersCRUD", {firstName, lastName, phone, age, email, educativeLevel, enrolments, role})
+} catch (error) {
+    next(error)
+}
+} )
+
+// POST "admin/users/:id/edit/" => recibe la id de un usuario para modificarlo
+
+router.post("/users/:id/edit", (req, res, next) => {
+
+
+
+
+    res.redirect("/users/:id/edit")
+
+})
 
 
 
