@@ -1,1 +1,56 @@
-<h3>cursos en admin</h3>
+<h3>All Courses</h3>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  {{#each allCourses}}
+    <div class="col">
+      <div class="card h-100">
+        <a href="/course/{{this._id}}/view">
+          <img
+            src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/d0/f61b4fbd9a45f3ae2f6111c9882c75/coursera-image-processing-engineering-science-course-logo-course1-intro-image-processing.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+            class="card-img-top"
+            alt="Course Image"
+          /></a>
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+          <p class="card-text">Course Description test</p>
+          {{#if this.teacher}}
+            <p class="card-text"><small class="text-body-secondary">Teacher :
+              </small>
+              <a href="/user:userid">Teacher placeholder</a></p>
+          {{/if}}
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <a href="/course/{{this._id}}/edit">
+            <button type="button" class="btn btn-outline-primary"><i
+                class="bi bi-gear"
+              ></i>
+            </button></a>
+          <form method="post" action="/course/{{this._id}}/delete">
+            <a href="">
+              <button type="submit" class="btn btn-outline-primary"><i
+                  class="bi bi-trash"
+                ></i></button></a>
+          </form>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+{{!-- {{#each allCourses}}
+    <div class="card">
+      <img
+        src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/d0/f61b4fbd9a45f3ae2f6111c9882c75/coursera-image-processing-engineering-science-course-logo-course1-intro-image-processing.jpg?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50"
+        class="card-img-top"
+        alt="Course Image"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{this.name}}</h5>
+        <p class="card-text">Course Description test</p>
+        {{#if this.teacher}}
+          <p class="card-text"><small class="text-body-secondary">Teacher :
+            </small>
+            <a href="/user:userid">Teacher placeholder</a></p>
+        {{/if}}
+      </div>
+    </div>
+  {{/each}} --}}

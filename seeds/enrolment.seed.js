@@ -6,19 +6,19 @@ const Course = require("../models/Course.model");
 const enrolment = [
   {
     userId: "654e59ac7d146f59e946a437",
-    courseId: "654e266e8704d3dfc7efa836",
+    courseId: "655107cfceeb012b46cdb4f0",
     roleInCourse: "editingteacher",
     status: "active",
   },
   {
     userId: "654e59ac7d146f59e946a436",
-    courseId: "654e266e8704d3dfc7efa836",
+    courseId: "655107cfceeb012b46cdb4f0",
     roleInCourse: "student",
     status: "active",
   },
   {
     userId: "654e59ac7d146f59e946a435",
-    courseId: "654e266e8704d3dfc7efa836",
+    courseId: "655107cfceeb012b46cdb4f0",
     roleInCourse: "manager",
     status: "active",
   },
