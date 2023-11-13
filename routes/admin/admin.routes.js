@@ -48,7 +48,8 @@ try {
 
 // POST "admin/users/:id/edit/" => recibe la id de un usuario para modificarlo
 
-router.post("/users/:id/edit", (req, res, next) => {
+router.post("/users/:id/edit", async (req, res, next) => {
+    // await User
 
 
 
@@ -59,7 +60,17 @@ router.post("/users/:id/edit", (req, res, next) => {
 
 
 
-// POST "admin/:id/delete/" => recibe la id de un usuario para borrarlo
+// POST "admin/:id/delete/" => recibe la id de un usuario para borrarlo y redirige a la lista de users
+
+router.post("/users/:id/delete" , async (req, res, next) => {
+    
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        res.redirect("/admin/users")
+    } catch (error) {
+        next(error)
+    }
+})
 
 
 module.exports = router

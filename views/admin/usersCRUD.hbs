@@ -121,10 +121,9 @@
                       <label class="form-label" for="form3Example1c">Your age</label>
                     </div>
                   </div>
-
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
+                    {{!-- <div class="form-outline flex-fill mb-0">
                       {{#if this.email}}
                       <input
                       required
@@ -144,13 +143,13 @@
                       />
                       {{/if}}
                       <label class="form-label" for="form3Example3c">Your Email</label>
-                    </div>
+                    </div> --}}
                   </div>
-
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                        {{#if this.educativeLevel}}<select name="educativeLevel" class="form-select" aria-label="Default select example" aria-placeholder="{{this.educativeLevel}}">
+                        {{#if this.educativeLevel}}
+                        <select name="educativeLevel" class="form-select" aria-label="Default select example" aria-placeholder="{{this.educativeLevel}}">
                         <option selected>Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
