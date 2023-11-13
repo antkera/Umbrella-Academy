@@ -3,11 +3,13 @@ const { Schema, model } = require("mongoose");
 const enrolmentSchema = new Schema(
   {
     userId: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     },
     courseId: {
-      type: String,
+      type: Schema.Types.ObjectId,
+        ref: "Course",
       required: true,
     },
     roleInCourse: {

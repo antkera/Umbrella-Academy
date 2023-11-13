@@ -1,9 +1,11 @@
+<h3>Lista de Enrollments</h3>
+<a href="/admin/enrollment/create"> <button type="submit" class="btn btn-outline-primary active">Add</button></a>
+<li class="list-group-item"><b>Lista de matrículas</b></li>
 
-<ul class="list-group">
-  <li class="list-group-item"><b>Lista de usuarios</b></li>
 
-  {{#each this.arrUsers}}
-  <li class="list-group-item">{{this.firstName}} <br> {{this.email}}</li>
+
+  {{#each this.enrollments}}
+  <li class="list-group-item">{{this.userId.firstName}} ({{this.roleInCourse}}) <br> {{this.courseId.name}}</li>
   <div class="btn-group" role="group" aria-label="Basic outlined example">
  <a href="/admin/users/{{this._id}}/details/"> <button type="submit" class="btn btn-outline-primary">Detail</button></a>
  <a href="/admin/users/{{this._id}}/edit/"> <button type="submit" class="btn btn-outline-primary">Edit</button></a>
@@ -14,3 +16,4 @@
   {{/each}}
 
 </ul>
+
