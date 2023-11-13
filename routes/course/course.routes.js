@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Course = require("../../models/Course.model");
+const uploader = require("../../middlewares/cloudinary.middleware");
 
 // GET "/course/:id" => obtiene la ruta de la vista
 router.get("/:id", (req, res, next) => {
@@ -19,9 +20,10 @@ router.get("/:id/view", async (req, res, next) => {
 });
 
 // POST "/course/:id/edit" => obtiene los datos para actualizar el curso
-router.post("/:id", async (req, res, next) => {
+router.post("/:id", uploader.single("profilePic"), async (req, res, next) => {
   try {
-    const { name, profilePic, isHighlighted } = req.body;
+    const { name, isHighlighted } = req.body;
+    const profilePic = req.file.path;
     const courseId = req.params.id;
     await Course.findByIdAndUpdate(courseId, {
       name,
