@@ -18,3 +18,79 @@ router.get("/courses", async (req, res, next) => {
 });
 
 module.exports = router;
+const express = require("express")
+const User = require("../../models/User.model")
+const router = express.Router()
+
+// GET "admin/" => renderiza la vista principal del admin
+router.get("/", (req, res, next) => {
+    res.render("admin/home")
+})
+
+
+// GET "admin/courses" => renderiza la vista courses del admin
+
+router.get("/courses",  (req, res, next) => {
+    
+    res.render("admin/courses")
+
+
+})
+
+
+// GET "admin/users" => renderiza la lista de usuarios con botones CRUD
+
+router.get("/users", async(req, res, next) => {
+    try {
+        const arrUsers = await User.find();
+        res.render("admin/users", {arrUsers})
+    } catch (error) {
+        next(error)
+    }
+
+    
+})
+
+
+// GET "admin/users/:id/edit/" => renderiza un formulario para editar el usuario por id.
+
+router.get("/users/:id/edit", async(req, res, next) => {
+    console.log("hola")
+    console.log(req.params.id)
+try {
+    const {firstName, lastName, phone, age, email, educativeLevel, enrolments, role} = await User.findById(req.params.id)
+    console.log({firstName, lastName, phone, age, email, educativeLevel, enrolments, role})
+    res.render("admin/usersCRUD", {firstName, lastName, phone, age, email, educativeLevel, enrolments, role})
+} catch (error) {
+    next(error)
+}
+} )
+
+// POST "admin/users/:id/edit/" => recibe la id de un usuario para modificarlo
+
+router.post("/users/:id/edit", async (req, res, next) => {
+    // await User
+
+
+
+
+    res.redirect("/users/:id/edit")
+
+})
+
+
+
+// POST "admin/:id/delete/" => recibe la id de un usuario para borrarlo y redirige a la lista de users
+
+router.post("/users/:id/delete" , async (req, res, next) => {
+    
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        res.redirect("/admin/users")
+    } catch (error) {
+        next(error)
+    }
+})
+
+
+module.exports = router
