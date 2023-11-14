@@ -1,0 +1,30 @@
+<form
+  class="text-center border border-light p-5"
+  method="post"
+  enctype="multipart/form-data"
+  action="/course/add"
+>
+
+  <p class="h4 mb-4">Add course</p>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="name">Name</label>
+    <input type="text" class="form-control" name="name" required />
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="profilePic">Imagen Portada</label>
+    <input type="file" class="form-control" name="profilePic" />
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="prifilePic">Visible</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="isHighlighted"
+    >
+      <option value="1">True</option>
+      <option value="0">False</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Add</button>
+</form>

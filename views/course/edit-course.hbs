@@ -1,14 +1,11 @@
-<!-- Default form register -->
 <form
   class="text-center border border-light p-5"
   method="post"
   enctype="multipart/form-data"
   action="/course/{{oneCourse._id}}"
 >
-
   <p class="h4 mb-4">Editar curso {{oneCourse.name}}</p>
 
-  <!-- Name input -->
   <div class="form-outline mb-4">
     <label class="form-label" for="name">Name</label>
     <input
@@ -29,7 +26,7 @@
     />
   </div>
   <div class="form-outline mb-4">
-    <label class="form-label" for="prifilePic">Visible</label>
+    <label class="form-label" for="profilePic">Visible</label>
     <select
       class="form-select"
       aria-label="Default select example"
@@ -39,7 +36,5 @@
       <option value="0">False</option>
     </select>
   </div>
-  <!-- Submit button -->
   <button type="submit" class="btn btn-primary btn-block mb-4">Edit</button>
 </form>
-<!-- Default form register -->

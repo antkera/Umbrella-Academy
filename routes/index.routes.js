@@ -11,11 +11,13 @@ const adminRouter = require("./admin/admin.routes");
 const studentRouter = require("./student/student.routes");
 const teacherRouter = require("./teacher/teacher.routes");
 const courseRouter = require("./course/course.routes");
+const contentRouter = require("./content/content.routes");
 
 router.use("/auth", authRouter);
 router.use("/admin", adminRouter);
 router.use("/student", studentRouter);
 router.use("/teacher", teacherRouter);
 router.use("/course", courseRouter);
+router.use("/content", contentRouter);
 
 module.exports = router;

@@ -1,65 +1,48 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Course Title {{oneCourse.name}}</a>
+  <a class="navbar-brand" href="#">{{oneCourse.name}}</a>
   <!-- Add additional navigation elements here -->
 </nav>
-
-<!-- Course Content -->
-<div class="container mt-4">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-3">
-      <div class="list-group" id="sidebar">
-        <a
-          href="#"
-          class="list-group-item list-group-item-action"
-          data-section="section1"
-        >Section 1</a>
-        <a
-          href="#"
-          class="list-group-item list-group-item-action"
-          data-section="section2"
-        >Section 2</a>
-        <a
-          href="#"
-          class="list-group-item list-group-item-action"
-          data-section="section3"
-        >Section 3</a>
-        <!-- Add more sections as needed -->
+<p>
+  <a href="/content/{{oneCourse._id}}/add"><button
+      type="button"
+      class="btn btn-success"
+    >Add Contents</button>
+  </a>
+  <a href=""><button type="button" class="btn btn-success">Enrolments</button>
+  </a></p>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {{#each content}}
+    <div class="col">
+      <div class="card">
+        <a href="{{this.contentData}}">{{this.name}}.{{this.contentType}}</a>
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+          <p class="card-text">{{this.description}}</p>
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <a href="/content/{{this._id}}/edit">
+              <button type="button" class="btn btn-outline-primary"><i
+                  class="bi bi-gear"
+                ></i>
+              </button></a>
+            <form method="post" action="/content/{{this._id}}/delete">
+              <a href="">
+                <button type="submit" class="btn btn-outline-primary"><i
+                    class="bi bi-trash"
+                  ></i></button></a>
+            </form>
+          </div>
+        </div>
+        <p>
+          <a href="/content/{{this._id}}/view"><button
+              class="btn btn-outline-primary"
+            >View content</button></a>
+        </p>
       </div>
     </div>
-
-    <!-- Main Content -->
-    <div class="col-md-9" id="main-content">
-      <!-- Content will be dynamically loaded here -->
-    </div>
-  </div>
+  {{/each}}
 </div>
-
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script
-  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-></script>
-<script
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-></script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() { // Handle sidebar
-  item click var sidebarItems = document.querySelectorAll('#sidebar a');
-  sidebarItems.forEach(function(item) { item.addEventListener('click',
-  function(e) { e.preventDefault(); // Load content based on the selected
-  section var section = this.getAttribute('data-section'); loadContent(section);
-  }); }); // Load initial content (e.g., default section)
-  loadContent('section1'); // Function to load content based on section function
-  loadContent(section) { // You can customize this part to load content
-  dynamically var content = ''; switch(section) { case 'section1': content =
-  '<h2>Section 1: Introduction</h2><p>This is the content of the introduction
-  section.</p>'; break; case 'section2': content = '<h2>Section 2: Advanced
-  Topics</h2><p>Explore advanced topics in this section.</p>'; break; case
-  'section3': content = '<h2>Section 3: Final Project</h2><p>Work on your final
-  project in this section.</p>'; break; // Add more cases for additional
-  sections } // Display the loaded content in the main area
-  document.getElementById('main-content').innerHTML = content; } });
-</script>

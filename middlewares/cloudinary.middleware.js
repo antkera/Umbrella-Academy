@@ -11,9 +11,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    allowed_formats: ["jpg", "png"], // que formatos vamos a aceptar
+    allowed_formats: ["jpeg", "png", "pdf"], // que formatos vamos a aceptar
     folder: "contents", // The name of the folder in cloudinary
-    // resource_type: "raw",
+    resource_type: "auto",
   },
 });
 
