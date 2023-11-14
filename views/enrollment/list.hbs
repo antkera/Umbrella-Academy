@@ -1,0 +1,19 @@
+<h3>Lista de Enrollments</h3>
+<a href="/admin/enrollment/create"> <button type="submit" class="btn btn-outline-primary active">Add</button></a>
+<li class="list-group-item"><b>Lista de matrículas</b></li>
+
+
+
+  {{#each this.enrollments}}
+  <li class="list-group-item">{{this.userId.firstName}} ({{this.roleInCourse}}) <br> {{this.courseId.name}}</li>
+  <div class="btn-group" role="group" aria-label="Basic outlined example">
+ <a href="/admin/enrollment/{{this._id}}/details/"> <button type="submit" class="btn btn-outline-primary">Detail</button></a>
+ <a href="/admin/enrollment/{{this._id}}/edit/"> <button type="submit" class="btn btn-outline-primary">Edit</button></a>
+ <div>
+  <form action="/admin/enrollment/{{this._id}}/delete/" method="post"><a href="" ><button type="submit" class="btn btn-outline-primary">Delete</button></a></form>
+  </div>
+</div>
+  {{/each}}
+
+</ul>
+

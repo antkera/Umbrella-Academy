@@ -1,16 +1,31 @@
+<h4 class="list-group-item"><b>Users list:</b></h4>
+<div class="lateral">
+  <ul class="list-group">
+      {{#each this.arrUsers}}
+        <li class="list-group-item">{{this.firstName}}
+          <br />
+          {{this.email}}</li>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <a href="/admin/users/{{this._id}}/details/">
+            <button
+              type="submit"
+              class="btn btn-outline-primary"
+            >Detail</button></a>
+          <a href="/admin/users/{{this._id}}/edit/">
+            <button
+              type="submit"
+              class="btn btn-outline-primary"
+            >Edit</button></a>
+          <div>
+            <form action="/admin/users/{{this._id}}/delete/" method="post"><a
+                href=""
+              ><button
+                  type="submit"
+                  class="btn btn-outline-primary"
+                >Delete</button></a></form>
+          </div>
+        </div>
+      {{/each}}
 
-<ul class="list-group">
-  <li class="list-group-item"><b>Lista de usuarios</b></li>
-
-  {{#each this.arrUsers}}
-  <li class="list-group-item">{{this.firstName}} <br> {{this.email}}</li>
-  <div class="btn-group" role="group" aria-label="Basic outlined example">
- <a href="/admin/users/{{this._id}}/detalles/"> <button type="submit" class="btn btn-outline-primary">Detail</button></a>
- <a href="/admin/users/{{this._id}}/edit/"> <button type="submit" class="btn btn-outline-primary">Edit</button></a>
- <div>
-  <form action="/admin/users/{{this._id}}/delete/" method="post"><a href="" ><button type="submit" class="btn btn-outline-primary">Delete</button></a></form>
-  </div>
+  </ul>
 </div>
-  {{/each}}
-
-</ul>
