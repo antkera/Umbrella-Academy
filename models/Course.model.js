@@ -6,6 +6,9 @@ const courseSchema = new Schema(
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+    },
     enrolments: [
       {
         type: Schema.Types.ObjectId,
