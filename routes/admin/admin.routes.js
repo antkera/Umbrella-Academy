@@ -4,6 +4,7 @@ const Course = require("../../models/Course.model");
 const User = require("../../models/User.model");
 const moment = require("moment");
 const Enrolment = require("../../models/Enrolment.model");
+const { isLoggedIn, isAdmin } = require("../../middlewares/auth.middleware");
 
 // GET "/admin" => renderiza la vista principal del admin
 router.get("/", (req, res, next) => {
@@ -12,7 +13,7 @@ router.get("/", (req, res, next) => {
 
 // GET "/admin/courses" => renderiza la vista courses del admin
 
-router.get("/courses", async (req, res, next) => {
+router.get("/courses", isLoggedIn, async (req, res, next) => {
   try {
     const allCourses = await Course.find();
     res.render("admin/courses", { allCourses });
@@ -22,13 +23,13 @@ router.get("/courses", async (req, res, next) => {
 });
 
 // GET "/admin" => renderiza la vista principal del admin
-router.get("/", (req, res, next) => {
+router.get("/", isLoggedIn, (req, res, next) => {
   res.render("admin/home");
 });
 
 // GET "/admin/users" => renderiza la lista de usuarios con botones CRUD
 
-router.get("/users", async (req, res, next) => {
+router.get("/users", isLoggedIn, async (req, res, next) => {
   try {
     const arrUsers = await User.find();
     res.render("admin/users", { arrUsers });
@@ -39,7 +40,7 @@ router.get("/users", async (req, res, next) => {
 
 // GET "/admin/users/:id/edit" => renderiza un formulario para editar el usuario por id.
 
-router.get("/users/:id/edit", async (req, res, next) => {
+router.get("/users/:id/edit", isLoggedIn, async (req, res, next) => {
   try {
     const {
       firstName,
@@ -71,7 +72,7 @@ router.get("/users/:id/edit", async (req, res, next) => {
 
 // POST "/admin/users/:id/edit" => recibe la id de un usuario para modificarlo
 
-router.post("/users/:id/edit", async (req, res, next) => {
+router.post("/users/:id/edit", isLoggedIn, async (req, res, next) => {
   const { firstName, lastName, phone, age, educativeLevel, role } = req.body;
   await User.findByIdAndUpdate(req.params.id, {
     firstName,
@@ -87,7 +88,7 @@ router.post("/users/:id/edit", async (req, res, next) => {
 
 // POST "/admin/:id/delete" => recibe la id de un usuario para borrarlo y redirige a la lista de users
 
-router.post("/users/:id/delete", async (req, res, next) => {
+router.post("/users/:id/delete", isLoggedIn, async (req, res, next) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.redirect("/admin/users");
@@ -98,7 +99,7 @@ router.post("/users/:id/delete", async (req, res, next) => {
 
 // GET "/admin/users/:id/details" => renderiza los detalles de un sólo usuario.
 
-router.get("/users/:id/details", async (req, res, next) => {
+router.get("/users/:id/details", isLoggedIn, async (req, res, next) => {
   try {
     const {
       firstName,
@@ -133,7 +134,7 @@ router.get("/users/:id/details", async (req, res, next) => {
 
 // GET "/admin/enrollment/list" => renderiza la lista de enrollments que hay en la academia.
 
-router.get("/enrollment/list", async (req, res, next) => {
+router.get("/enrollment/list", isLoggedIn, async (req, res, next) => {
   try {
     const enrollments = await Enrolment.find()
       .populate("userId")
@@ -146,7 +147,7 @@ router.get("/enrollment/list", async (req, res, next) => {
 
 // GET "/admin/enrollment/create" => renderiza formulario para crear una matrícula
 
-router.get("/enrollment/create", async (req, res, next) => {
+router.get("/enrollment/create", isLoggedIn, async (req, res, next) => {
   try {
     const users = await User.find().select({
       firstName: 1,
@@ -163,7 +164,7 @@ router.get("/enrollment/create", async (req, res, next) => {
 
 // POST "/admin/enrollment/create" => Crea una matricula y redirige a la lista de matriculas.
 
-router.post("/enrollment/create", async (req, res, next) => {
+router.post("/enrollment/create", isLoggedIn, async (req, res, next) => {
   try {
     let { userId, courseId, roleInCourse, status } = req.body;
     if (!status) {
@@ -189,7 +190,7 @@ router.post("/enrollment/create", async (req, res, next) => {
 
 // GET "/admin/enrollment/:id/edit" => Renderiza un formulario para editar.
 
-router.get("/enrollment/:id/edit", async (req, res, next) => {
+router.get("/enrollment/:id/edit", isLoggedIn, async (req, res, next) => {
   try {
     const enrollment = await Enrolment.findById(req.params.id)
       .populate("userId")
@@ -219,7 +220,7 @@ router.get("/enrollment/:id/edit", async (req, res, next) => {
 
 // POST "/admin/enrollment/:id/edit" => Actualiza un enrollment y redirige a details.
 
-router.post("/enrollment/:id/edit", async (req, res, next) => {
+router.post("/enrollment/:id/edit", isLoggedIn, async (req, res, next) => {
   try {
     let { userId, courseId, roleInCourse, status } = req.body;
     if (!status) {
@@ -251,21 +252,19 @@ router.post("/enrollment/:id/edit", async (req, res, next) => {
 
 // GET "//details"
 
-router.get("/enrollment/:id/details" , async (req, res, next) => {
-
+router.get("/enrollment/:id/details", isLoggedIn, async (req, res, next) => {
   try {
     const enrollment = await Enrolment.findById(req.params.id)
-    .populate("userId")
-    .populate("courseId")
-  res.render("enrollment/details", enrollment)
+      .populate("userId")
+      .populate("courseId");
+    res.render("enrollment/details", enrollment);
   } catch (error) {
-    next(error)
+    next(error);
   }
-  
-})
+});
 
 // POST "/admin/enrollment/:id/delete"
-router.post("/enrollment/:id/delete", async (req, res, next) => {
+router.post("/enrollment/:id/delete", isLoggedIn, async (req, res, next) => {
   try {
     const enrollmentDeleted = await Enrolment.findByIdAndDelete(req.params.id);
     await Course.findByIdAndUpdate(enrollmentDeleted.courseId, {

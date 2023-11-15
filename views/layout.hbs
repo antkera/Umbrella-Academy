@@ -17,55 +17,60 @@
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-<nav>
+  <nav>
     <ul class="nav nav-tabs">
       <li class="nav-items">
         <a class="nav-link" href="/">Home</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="/admin">admin home</a></li>
-          <li><a class="dropdown-item" href="/admin/courses">Admin courses</a></li>
-          <li><a class="dropdown-item" href="/admin/users">Admin users</a></li>
-          <li><a class="dropdown-item" href="/admin/enrollment/list">Admin Enrollments</a></li>
+      {{#if isSessionActive}}
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+          >Admin</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/admin">admin home</a></li>
+            <li><a class="dropdown-item" href="/admin/courses">Admin courses</a></li>
+            <li><a class="dropdown-item" href="/admin/users">Admin users</a></li>
+            <li><a class="dropdown-item" href="/admin/enrollment/list">Admin
+                Enrollments</a></li>
 
-          
-        </ul>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown"
-        >Student</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="/student">Student home</a></li>
-          <li><a class="dropdown-item" href="/student/create">Create students</a></li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown"
-        >Teacher</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="/teacher">Teacher home</a></li>
-          <li><a class="dropdown-item" href="/teacher/create">Create teachers</a></li>
-        </ul>
-      </li>
-      <li class="nav-items">
-        <a class="nav-link" href="/auth/login">Login</a>
-      </li>
-      <li class="nav-items">
-        <a class="nav-link" href="/auth/logout">Logout</a>
-      </li>
-      <li class="nav-items">
-        <a class="nav-link" href="/auth/register">Register</a>
-      </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+          >Student</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/student">Student home</a></li>
+            <li><a class="dropdown-item" href="/student/create">Create students</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+          >Teacher</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/teacher">Teacher home</a></li>
+            <li><a class="dropdown-item" href="/teacher/create">Create teachers</a></li>
+          </ul>
+        </li>
+        <li class="nav-items">
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+      {{else}}
+        <li class="nav-items">
+          <a class="nav-link" href="/auth/login">Login</a>
+        </li>
+        <li class="nav-items">
+          <a class="nav-link" href="/auth/register">Register</a>
+        </li>
+      {{/if}}
     </ul>
-    </nav>
+  </nav>
   <body>
-
 
     {{{body}}}
     <script

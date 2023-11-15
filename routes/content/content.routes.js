@@ -109,6 +109,7 @@ router.post(
         { $pull: { contents: { $in: [content] } } }
       );
       await Content.findByIdAndDelete(idContent);
+      console.log(uploader.single("contentData"));
       res.redirect("/course/" + course._id + "/view");
     } catch (error) {
       next(error);

@@ -4,7 +4,6 @@ const capitalize = require("../../utils/capitalize");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 
-
 const cypherPassword = async (password) => {
   try {
     const salt = await bcrypt.genSalt(12);
@@ -14,7 +13,6 @@ const cypherPassword = async (password) => {
     throw new Error("Could not hash password");
   }
 };
-
 
 // GET "auth/login" => Renderiza formulario para logearse.
 
@@ -74,7 +72,7 @@ router.post("/login", async (req, res, next) => {
     }
     const sessionInfo = {
       _id: foundUser.id,
-      username: foundUser.firstName + " " + foundUser.lastName,
+      role: foundUser.role,
     };
 
     req.session.user = sessionInfo;
@@ -146,10 +144,17 @@ router.post("/register", async (req, res, next) => {
     });
     return;
   }
-  
+
   try {
-    const hashedPassword = await cypherPassword(password)
-    await User.create({ firstName, lastName, phone, age, email, password: hashedPassword });
+    const hashedPassword = await cypherPassword(password);
+    await User.create({
+      firstName,
+      lastName,
+      phone,
+      age,
+      email,
+      password: hashedPassword,
+    });
     console.log("usuario creado");
   } catch (error) {
     next(error);
