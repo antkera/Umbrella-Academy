@@ -1,0 +1,26 @@
+<h3>enrollments</h3>
+<h3>Users Details</h3>
+{{#each enrollments}}
+<a href="/admin/users"> 🔙 Back to the list</a>
+<div>
+<h1>{{this.userId.email}}</h1>
+<div>
+        <h3>Name:</h3>
+<h4>{{this.userId.firstName}}</h4>
+    <h3>Last name:</h3>
+<h4>{{this.userId.lastName}}</h4>
+    <h3>Phone number:</h3>
+<h4>{{this.userId.phone}}</h4>
+    <h3>Age:</h3>
+<h4>{{this.userId.age}}</h4>
+    <h3>Educational level:</h3>
+<h4>{{this.userId.educativeLevel}}</h4>
+    <h3>Role:</h3>
+<h4>{{this.roleInCourse}}</h4>
+
+
+{{/each}}
+
+</ul>
+</div>
+</div>
