@@ -20,8 +20,8 @@ const path = require("path");
 // Create session variables
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const MONGODB_URI =
-  process.env.MONGO_URI || "mongodb://127.0.0.1:27017/Umbrella-academy";
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Umbrella-academy";
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
@@ -54,7 +54,7 @@ module.exports = (app) => {
         maxAge: 1000 * 24 * 60 * 60, // 1 dia
       },
       store: MongoStore.create({
-        mongoUrl: MONGODB_URI,
+        mongoUrl: MONGO_URI,
         ttl: 24 * 60 * 60 * 2,
       }),
     })
