@@ -17,58 +17,79 @@
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <nav>
-    <ul class="nav nav-tabs">
-      <li class="nav-items">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      {{#if isSessionActive}}
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-          >Admin</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/admin">admin home</a></li>
-            <li><a class="dropdown-item" href="/admin/courses">Admin courses</a></li>
-            <li><a class="dropdown-item" href="/admin/users">Admin users</a></li>
-            <li><a class="dropdown-item" href="/admin/enrollment/list">Admin
-                Enrollments</a></li>
 
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-          >Student</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/student">Student home</a></li>
-            <li><a class="dropdown-item" href="/student/create">Create students</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-          >Teacher</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/teacher">Teacher home</a></li>
-            <li><a class="dropdown-item" href="/teacher/create">Create teachers</a></li>
-          </ul>
-        </li>
+  <nav class="navbar navbar-expand-lg navbar-light bg">
+    <img
+      src="images/logo.jpg"
+      value="brand"
+      class="img-responsive"
+      height="100px"
+    /><a class="navbar-brand" href="/">Umbrella Academy</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="icon fa fa-bars fa-fw" aria-hidden="true" aria-label=""></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
         <li class="nav-items">
-          <a class="nav-link" href="/auth/logout">Logout</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
-      {{else}}
-        <li class="nav-items">
-          <a class="nav-link" href="/auth/login">Login</a>
-        </li>
-        <li class="nav-items">
-          <a class="nav-link" href="/auth/register">Register</a>
-        </li>
-      {{/if}}
-    </ul>
+        {{#if isSessionActive}}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >Admin</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/admin">admin home</a></li>
+              <li><a class="dropdown-item" href="/admin/courses">Admin courses</a></li>
+              <li><a class="dropdown-item" href="/admin/users">Admin users</a></li>
+              <li><a class="dropdown-item" href="/admin/enrollment/list">Admin
+                  Enrolments</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >Student</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/student">Student home</a></li>
+              <li><a class="dropdown-item" href="/student/create">Create
+                  students</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >Teacher</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/teacher">Teacher home</a></li>
+              <li><a class="dropdown-item" href="/teacher/create">Create
+                  teachers</a></li>
+            </ul>
+          </li>
+          <li class="nav-items">
+            <a class="nav-link" href="/auth/logout">Logout</a>
+          </li>
+        {{else}}
+          <li class="nav-items">
+            <a class="nav-link" href="/auth/login">Login</a>
+          </li>
+          <li class="nav-items">
+            <a class="nav-link" href="/auth/register">Register</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
   </nav>
   <body>
 

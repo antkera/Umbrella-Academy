@@ -22,9 +22,14 @@ router.get("/add", (req, res, next) => {
 
 router.post("/add", uploader.single("profilePic"), async (req, res, next) => {
   try {
-    const { name, isHighlighted } = req.body;
+    const { name, description, isHighlighted } = req.body;
     const profilePic = req.file ? req.file.path : "";
-    const course = await Course.create({ name, isHighlighted, profilePic });
+    const course = await Course.create({
+      name,
+      description,
+      isHighlighted,
+      profilePic,
+    });
     console.log(course);
     res.redirect("/course/" + course._id + "/view");
   } catch (error) {
@@ -34,13 +39,13 @@ router.post("/add", uploader.single("profilePic"), async (req, res, next) => {
 // POST "/course/:id/edit" => obtiene los datos para actualizar el curso
 router.post("/:id", uploader.single("profilePic"), async (req, res, next) => {
   try {
-    const { name, isHighlighted } = req.body;
+    const { name, description, isHighlighted } = req.body;
     const courseId = req.params.id;
     const profilePic = req.file ? req.file.path : "";
     const course =
       profilePic !== ""
-        ? { name, profilePic, isHighlighted }
-        : { name, isHighlighted };
+        ? { name, description, profilePic, isHighlighted }
+        : { name, description, isHighlighted };
 
     await Course.findByIdAndUpdate(courseId, course);
     res.redirect("/course/" + courseId + "/view");

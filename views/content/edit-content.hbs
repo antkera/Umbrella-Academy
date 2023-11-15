@@ -29,6 +29,12 @@
   <div class="form-outline mb-4">
     <label class="form-label" for="contentData">File</label>
     <input type="file" class="form-control" name="contentData" />
+    <p><embed
+        src="{{oneContent.contentData}}"
+        type="application/pdf"
+        height="400px"
+        width="100%"
+      /></p>
   </div>
   <div class="form-outline mb-4">
     <label class="form-label" for="contentType">Content Type</label>
@@ -37,7 +43,7 @@
       aria-label="Default select example"
       name="contentType"
     >
-      <option value="jpeg">jpeg</option>
+      <option value="jpg">jpg</option>
       <option value="pdf">pdf</option>
       <option value="png">png</option>
     </select>

@@ -71,23 +71,22 @@ router.post(
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const {
-        name,
-        description,
-        contentData,
-        contentType,
-        visibility,
-        isHighlighted,
-      } = req.body;
-      await Content.findByIdAndUpdate(id, {
-        name,
-        description,
-        contentData,
-        contentType,
-        visibility,
-        isHighlighted,
-      });
-      console.log(req.body);
+      const contentData = req.file ? req.file.path : "";
+      const { name, description, contentType, visibility, isHighlighted } =
+        req.body;
+      const content =
+        contentData !== ""
+          ? {
+              name,
+              description,
+              contentType,
+              contentData,
+              visibility,
+              isHighlighted,
+            }
+          : { name, description, contentType, visibility, isHighlighted };
+
+      await Content.findByIdAndUpdate(id, content);
       res.redirect("view");
     } catch (error) {
       next(error);
