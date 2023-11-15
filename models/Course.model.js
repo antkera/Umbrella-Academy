@@ -6,7 +6,7 @@ const courseSchema = new Schema(
       type: String,
       required: true,
     },
-    name: {
+    description: {
       type: String,
     },
     enrolments: [
