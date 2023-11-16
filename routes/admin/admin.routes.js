@@ -5,6 +5,9 @@ const User = require("../../models/User.model");
 const moment = require("moment");
 const Enrolment = require("../../models/Enrolment.model");
 const { isLoggedIn, isAdmin } = require("../../middlewares/auth.middleware");
+// const getId = (objId) => {
+//   return "objId".slice(-26, -2)
+// }
 
 // GET "/admin" => renderiza la vista principal del admin
 router.get("/", (req, res, next) => {
@@ -112,7 +115,27 @@ router.get("/users/:id/details", isLoggedIn, async (req, res, next) => {
       updatedAt: updatedAt,
       enrolments,
       email,
-    } = await User.findById(req.params.id);
+    } = await User.findById(req.params.id)
+    // const cursos = []
+    // const cursos = await Course.find({ "_id": {$in: [enrolments._id]}})
+    
+      
+        // enrolments.forEach(async (element) => {
+        //   try {
+        //     console.log(element);
+        //     console.log(getId("new ObjectId('6553ab37a284baf6d87d6f1e')"));
+            
+        //     cursos.push(await Course.findById(getId(element.courseId)))
+        //   } catch (error) {
+        //     console.log(error);
+        //   }
+
+        // });
+    
+      
+      
+    
+    // console.log(cursos);
     const fechaC = moment(createdAt).format("LLLL");
     const fechaU = moment(updatedAt).format("LLLL");
     res.render("admin/usersDetails", {
@@ -139,6 +162,8 @@ router.get("/enrollment/list", isLoggedIn, async (req, res, next) => {
     const enrollments = await Enrolment.find()
       .populate("userId")
       .populate("courseId");
+    console.log(enrollments);
+
     res.render("enrollment/list", { enrollments });
   } catch (error) {
     next(error);
@@ -250,7 +275,7 @@ router.post("/enrollment/:id/edit", isLoggedIn, async (req, res, next) => {
   }
 });
 
-// GET "//details"
+// GET "/admin/enrollment/:id/details"
 
 router.get("/enrollment/:id/details", isLoggedIn, async (req, res, next) => {
   try {
@@ -288,6 +313,19 @@ router.get("/users/search", async (req, res, next) => {
     const arrUsers = await User.find(req.query);
     console.log(arrUsers);
     res.render("admin/users", { arrUsers });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/enrolments/search", async (req, res, next) => {
+  try {
+    const enrollments = await Enrolment.find(req.query)
+    .populate("userId")
+    .populate("courseId")
+    console.log(enrollments);
+    res.render("enrollment/list", { enrollments });
+    
   } catch (error) {
     next(error);
   }

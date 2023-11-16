@@ -3,6 +3,18 @@
   <button type="submit" class="btn btn-outline-success active">Add</button></a>
 <li class="list-group-item"><b>Lista de matrículas</b></li>
 
+<div id=" searchbar">
+  <form action="/admin/enrolments/search" method="get">
+    <button class="btn btn-outline-info " type="submit">Search</button>
+    <select class="form-select form-select-lg mb-3" name="roleInCourse" id="">
+      <option value="manager">Manager</option>
+      <option value="editingteacher">editingteacher</option>
+      <option defaul value="student">student</option>
+      <option value="teacher">teacher</option>
+    </select>
+  </form>
+</div>
+
 <ul>
   {{#each this.enrollments}}
     <li class="list-group-item">{{this.userId.firstName}}

@@ -1,0 +1,71 @@
+<h3>formulario para crear contenido</h3>
+
+<form
+  class="text-center border border-light p-5"
+  method="post"
+  enctype="multipart/form-data"
+  action="/teacher/content/create"
+>
+
+  <p class="h4 mb-4">Create content</p>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="name">Name</label>
+    <input type="text" class="form-control" name="name" required />
+  </div>
+  <div >
+  <label class="form-label" for="floatingTextarea2">Description</label> <br>
+  <textarea required class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
+</div>
+  
+  <div class="form-outline mb-4">
+    <label class="form-label" for="contentData">File</label>
+    <input type="file" class="form-control" name="contentData" />
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="contentType">Content Type</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="contentType"
+    >
+      <option value="jpeg">jpeg</option>
+      <option value="pdf">pdf</option>
+      <option value="png">png</option>
+    </select>
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="visibility">Visible</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="visibility"
+    >
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="isHighlighted">Highlighted</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="isHighlighted"
+    >
+      <option value="true">True</option>
+      <option value="false">False</option>
+    </select>
+  </div>
+   <div class="form-outline mb-4">
+    <label class="form-label" for="linkCourse">Add to: </label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="_id"
+    >
+    {{#each this.arrCourses}}
+      <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block mb-4">Create</button>
+</form>
