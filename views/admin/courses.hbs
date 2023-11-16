@@ -3,6 +3,7 @@
   <a href="/course/add"><button type="button" class="btn btn-success">Add Course</button>
   </a></p>
 <div class="row row-cols-1 row-cols-md-4 g-4">
+
   {{#each allCourses}}
     <div class="col">
       <div class="card h-100">
@@ -27,12 +28,34 @@
                 class="bi bi-gear"
               ></i>
             </button></a>
-          <form method="post" action="/course/{{this._id}}/delete">
-            <a href="">
-              <button type="submit" class="btn btn-outline-primary"><i
-                  class="bi bi-trash"
-                ></i></button></a>
-          </form>
+          {{! Modal trigger }}
+          <button
+            type="submit"
+            class="btn btn-outline-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#delete-course{{this._id}}"
+          ><i class="bi bi-trash"></i></button>
+          {{! Modal }}
+          <div class="container">
+            <div id="delete-course{{this._id}}" class="modal" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      Are you sure you want to delete this course?
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <form method="post" action="/course/{{this._id}}/delete">
+                      <button type="submit" class="btn btn-danger"><i
+                          class="bi bi-trash"
+                        ></i>Delete Course</button></form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{! End modal }}
         </div>
       </div>
     </div>

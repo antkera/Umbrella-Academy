@@ -16,7 +16,10 @@
           class="btn btn-outline-success separed"
         >Detail</button></a>
       <a href="/admin/enrollment/{{this._id}}/edit/">
-        <button type="submit" class="btn btn-outline-primary separed">Edit</button></a>
+        <button
+          type="submit"
+          class="btn btn-outline-primary separed"
+        >Edit</button></a>
       <div>
         {{!-- <input type="checkbox" id="toggleButton{{this._id}}">
 <label for="toggleButton{{this._id}}">Cambiar Clase</label>
@@ -52,13 +55,12 @@
           </div>
 
         </section> --}}
-        <form
-              action="/admin/enrollment/{{this._id}}/delete/"
-              method="post"
-            ><a href=""><button
-                  type="submit"
-                  class="btn btn-outline-danger separed"
-                >Delete</button></a></form>
+        <form action="/admin/enrollment/{{this._id}}/delete/" method="post"><a
+            href=""
+          ><button
+              type="submit"
+              class="btn btn-outline-danger separed"
+            >Delete</button></a></form>
 
       </div>
     </div>
