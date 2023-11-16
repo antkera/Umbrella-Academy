@@ -136,9 +136,7 @@ router.get("/users/:id/details", isLoggedIn, async (req, res, next) => {
 
 router.get("/enrollment/list", isLoggedIn, async (req, res, next) => {
   try {
-    const enrollments = await Enrolment.find()
-      .populate("userId")
-      .populate("courseId");
+    const enrollments = await Enrolment.find().populate("userId courseId");
     res.render("enrollment/list", { enrollments });
   } catch (error) {
     next(error);

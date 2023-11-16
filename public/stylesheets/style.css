@@ -28,9 +28,7 @@ h1 {
 /* .card {
   margin-top: -20px;
 } */
-.separed {
-  margin: 0 10px;
-}
+
 .error {
   color: red;
 }
@@ -69,4 +67,3 @@ footer {
 #map {
   height: 300px;
 }
-
