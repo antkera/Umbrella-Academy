@@ -1,6 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 nav {
   background-color: rgba(0, 0, 0, 0.476);
   padding: 40px 100px;
@@ -57,6 +58,17 @@ h1 {
   border-style: solid;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
+footer {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 30px 0;
+}
+
+#map {
+  height: 300px;
+}
+
 /* PALETA: https://www.colorhunt.co/palette/22092c872341be3144f05941 */
 
 /* color: 22092C
@@ -67,3 +79,4 @@ color:F 05941 */
 /* .umbrella{
   background-color: rgb(34, 9, 44, 0.5);
 } */
+flex-shrink: 0;
