@@ -1,63 +1,70 @@
-<h3>All Courses</h3>
-<p>
-  <a href="/course/add"><button type="button" class="btn btn-success">Add Course</button>
-  </a></p>
-<div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="container">
+  <h3>All Courses</h3>
+  <p>
+    <a href="/course/add"><button type="button" class="btn btn-success">Add
+        Course</button>
+    </a></p>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
 
-  {{#each allCourses}}
-    <div class="col">
-      <div class="card h-100">
-        <a href="/course/{{this._id}}/view">
-          <img
-            src="{{this.profilePic}}"
-            class="card-img-top"
-            alt="Course Image"
-          /></a>
-        <div class="card-body">
-          <h5 class="card-title">{{this.name}}</h5>
-          <p class="card-text">{{this.description}}</p>
-          {{#if this.teacher}}
-            <p class="card-text"><small class="text-body-secondary">Teacher :
-              </small>
-              <a href="/user:userid">Teacher placeholder</a></p>
-          {{/if}}
-        </div>
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-          <a href="/course/{{this._id}}/edit">
-            <button type="button" class="btn btn-outline-primary"><i
-                class="bi bi-gear"
-              ></i>
-            </button></a>
-          {{! Modal trigger }}
-          <button
-            type="submit"
-            class="btn btn-outline-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#delete-course{{this._id}}"
-          ><i class="bi bi-trash"></i></button>
-          {{! Modal }}
-          <div class="container">
-            <div id="delete-course{{this._id}}" class="modal" tabindex="-1">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">
-                      Are you sure you want to delete this course?
-                    </h5>
-                  </div>
-                  <div class="modal-body">
-                    <form method="post" action="/course/{{this._id}}/delete">
-                      <button type="submit" class="btn btn-danger"><i
-                          class="bi bi-trash"
-                        ></i>Delete Course</button></form>
+    {{#each allCourses}}
+      <div class="col">
+        <div class="card h-100">
+          <a href="/course/{{this._id}}/view">
+            <img
+              src="{{this.profilePic}}"
+              class="card-img-top"
+              alt="Course Image"
+            /></a>
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">{{this.description}}</p>
+            {{#if this.teacher}}
+              <p class="card-text"><small class="text-body-secondary">Teacher :
+                </small>
+                <a href="/user:userid">Teacher placeholder</a></p>
+            {{/if}}
+          </div>
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <a href="/course/{{this._id}}/edit">
+              <button type="button" class="btn btn-outline-primary"><i
+                  class="bi bi-gear"
+                ></i>
+              </button></a>
+            {{! Modal trigger }}
+            <button
+              type="submit"
+              class="btn btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#delete-course{{this._id}}"
+            ><i class="bi bi-trash"></i></button>
+            {{! Modal }}
+            <div class="container">
+              <div id="delete-course{{this._id}}" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">
+                        Are you sure you want to delete this course?
+                      </h5>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="/course/{{this._id}}/delete">
+                        <button type="submit" class="btn btn-danger"><i
+                            class="bi bi-trash"
+                          ></i>Delete Course</button></form>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            {{! End modal }}
           </div>
-          {{! End modal }}
         </div>
       </div>
-    </div>
-  {{/each}}
+    {{/each}}
+  </div>
 </div>

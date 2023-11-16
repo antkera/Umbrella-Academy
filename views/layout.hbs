@@ -17,13 +17,6 @@
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-      body { padding-bottom: 80px; /* Ajusta el cuerpo del contenido para dejar
-      espacio para el pie de página */ } /* Estilos para el pie de página */
-      footer { background-color: #000000; /* Fondo negro */ color: #ffffff; /*
-      Color del texto blanco */ padding: 30px 0; /* Espaciado interno */ } /*
-      Estilos para el mapa */ #map { height: 300px; /* Altura del mapa */ }
-    </style>
   </head>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -98,9 +91,28 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    {{{body}}}
-  </div>
+  {{#if isAdminSession}}
+    <div class="admin">
+      {{{body}}}
+    </div>
+  {{else}}
+    {{#if isTeacherSession}}
+      <div class="teacher">
+        {{{body}}}
+      </div>
+    {{else}}
+      {{#if isStudentSession}}
+        <div class="student">
+          {{{body}}}
+        </div>
+      {{else}}
+        <div class="user">
+          {{{body}}}
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+
   <footer class="footer">
     <div class="container">
       <div class="row">

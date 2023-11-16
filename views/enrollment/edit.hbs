@@ -1,154 +1,160 @@
-<h3>Editar matrícula</h3>
+<div class="container">
+  <h3>Edit enrolment</h3>
 
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <a href="/admin/enrollment/list"> 🔙 Back to the list</a>
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+  <section class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <a href="/admin/enrollment/list"> 🔙 Back to the list</a>
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Editar
-                  matrícula</p>
+                  <p
+                    class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"
+                  >Editar matrícula</p>
 
-                <form
-                  class="mx-1 mx-md-4"
-                  action="/admin/enrollment/{{this.enroll._id}}/edit"
-                  method="post"
-                >
+                  <form
+                    class="mx-1 mx-md-4"
+                    action="/admin/enrollment/{{this.enroll._id}}/edit"
+                    method="post"
+                  >
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      {{! nombre }}
-                      {{#if this.errorFullfillMessage}}
-                        <b class="error">{{this.errorFullfillMessage}}</b>
-                      {{/if}}
-
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="form3Example4c">User to
-                        enroll</label>
-                      <select
-                        required
-                        name="userId"
-                        class="form-select"
-                        aria-label="Large select example"
-                      >
-                        <option selected value="{{this.enroll.enrolledId}}">
-                          current:
-                          <br />
-                          {{this.enroll.enrolled}}
-                        </option>
-
-                        {{#each this.users}}
-                          <option value="{{this._id}}">{{this.email}}:
-                            <br />
-                            {{this.lastName}},
-                            <br />{{this.firstName}}
-                          </option>
-                        {{/each}}
-                      </select>
-
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label
-                        class="form-label"
-                        for="form3Example4c"
-                      >Course</label>
-                      <select
-                        name="courseId"
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option selected
-                          value="{{this.enroll.enrolledCourseId}}"
-                        >Current:{{this.enroll.enrolledCourse}}</option>
-                        {{#each this.courses}}
-                          <option value="{{this._id}}">{{this.name}}</option>
-                        {{/each}}
-                      </select>
-
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label
-                        class="form-label"
-                        for="form3Example4c"
-                      >Role</label>
-                      <select
-                        name="roleInCourse"
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option
-                          selected
-                          value="{{this.enroll.role}}"
-                        >current: {{this.enroll.role}}</option>
-                        <option value="manager">manager</option>
-                        <option value="teacher">teacher</option>
-                        <option value="editingteacher">teacher with edit
-                          superpowers</option>
-                        <option value="student">student</option>
-
-                      </select>
-
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-
-                      <div
-                        class="btn-group"
-                        role="group"
-                        aria-label="Basic checkbox toggle button group"
-                      >
-                        <input
-                          type="checkbox"
-                          class="btn-check"
-                          id="btncheck1"
-                          value="inactive"
-                          autocomplete="on"
-                          name="status"
-                        />
-                        <label
-                          class="btn btn-outline-primary"
-                          for="btncheck1"
-                        >Inactive</label>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{! nombre }}
+                        {{#if this.errorFullfillMessage}}
+                          <b class="error">{{this.errorFullfillMessage}}</b>
+                        {{/if}}
 
                       </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example4c">User to
+                          enroll</label>
+                        <select
+                          required
+                          name="userId"
+                          class="form-select"
+                          aria-label="Large select example"
+                        >
+                          <option selected value="{{this.enroll.enrolledId}}">
+                            current:
+                            <br />
+                            {{this.enroll.enrolled}}
+                          </option>
+
+                          {{#each this.users}}
+                            <option value="{{this._id}}">{{this.email}}:
+                              <br />
+                              {{this.lastName}},
+                              <br />{{this.firstName}}
+                            </option>
+                          {{/each}}
+                        </select>
+
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label
+                          class="form-label"
+                          for="form3Example4c"
+                        >Course</label>
+                        <select
+                          name="courseId"
+                          class="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option
+                            selected
+                            value="{{this.enroll.enrolledCourseId}}"
+                          >Current:{{this.enroll.enrolledCourse}}</option>
+                          {{#each this.courses}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                          {{/each}}
+                        </select>
+
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label
+                          class="form-label"
+                          for="form3Example4c"
+                        >Role</label>
+                        <select
+                          name="roleInCourse"
+                          class="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option selected value="{{this.enroll.role}}">current:
+                            {{this.enroll.role}}</option>
+                          <option value="manager">manager</option>
+                          <option value="teacher">teacher</option>
+                          <option value="editingteacher">teacher with edit
+                            superpowers</option>
+                          <option value="student">student</option>
+
+                        </select>
+
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+
+                        <div
+                          class="btn-group"
+                          role="group"
+                          aria-label="Basic checkbox toggle button group"
+                        >
+                          <input
+                            type="checkbox"
+                            class="btn-check"
+                            id="btncheck1"
+                            value="inactive"
+                            autocomplete="on"
+                            name="status"
+                          />
+                          <label
+                            class="btn btn-outline-primary"
+                            for="btncheck1"
+                          >Inactive</label>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div
+                      class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-warning btn-lg"
+                      >Confirm Changes</button>
 
                     </div>
-                  </div>
 
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="submit" class="btn btn-warning btn-lg">Confirm
-                      Changes</button>
+                  </form>
 
-                  </div>
-
-                </form>
+                </div>
 
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

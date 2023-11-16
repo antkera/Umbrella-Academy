@@ -18,20 +18,15 @@ router.get("/courses", (req, res, next) => {
 
 // GET "/teacher/courses/:id/enrollments"
 router.get("/courses/:id/enrollments", async (req, res, next) => {
-    try {
-        const enrollments = await Enrolment.find({courseId: req.params.id}).populate("userId").select({userId : 1})
-    console.log(enrollments);
-        res.render("course/view-enrollments", {enrollments});
-    } catch (error) {
-        next(error)
-    }
-    
-    
-
-
+  try {
+    const enrollments = await Enrolment.find({ courseId: req.params.id })
+      .populate("userId courseId")
+      .select({ userId: 1, roleInCourse: 1 });
+    res.render("course/view-enrollments", { enrollments });
+  } catch (error) {
+    next(error);
+  }
 });
-
-
 
 module.exports = router;
 
