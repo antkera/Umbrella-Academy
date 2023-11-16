@@ -1,6 +1,6 @@
 <h3>Lista de Enrollments</h3>
 <a href="/admin/enrollment/create">
-  <button type="submit" class="btn btn-outline-primary active">Add</button></a>
+  <button type="submit" class="btn btn-outline-success active">Add</button></a>
 <li class="list-group-item"><b>Lista de matrículas</b></li>
 
 <ul>
@@ -13,24 +13,42 @@
       <a href="/admin/enrollment/{{this._id}}/details/">
         <button
           type="submit"
-          class="btn btn-outline-success separed"
+          class="btn btn-outline-primary separed"
         >Detail</button></a>
       <a href="/admin/enrollment/{{this._id}}/edit/">
-        <button type="submit" class="btn btn-outline-primary separed">Edit</button></a>
+        <button type="submit" class="btn btn-outline-warning separed">Edit</button></a>
       <div>
-        {{!-- <input type="checkbox" id="toggleButton{{this._id}}">
-<label for="toggleButton{{this._id}}">Cambiar Clase</label>
-<div id="elementToChange" class="initialClass">Contenido de la etiqueta</div>
-
-<style>
-  #toggleButton{{this._id}}:checked + section + #{{this._id}} {
-    
-  opacity: 1;
-  pointer-events: unset;
-  }
-</style>
+         <button
+            type="submit"
+            class="btn btn-outline-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#delete-enrolments{{this._id}}"
+          ><i class="bi bi-trash"></i> elim</button>
         
-        <section class="modal" id="{{this.id}}">
+        <div class="container">
+            <div id="delete-enrolments{{this._id}}" class="modal" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      Are you sure you want to delete this enrollment?
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <form
+              action="/admin/enrollment/{{this._id}}/delete/"
+              method="post"
+            ><a href=""><button
+                  type="submit"
+                  class="btn btn-danger separed"
+                >Delete</button></a></form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        {{!-- <section class="modal" id="delete-enrolments{{this.id}}">
 
           <div class="modal-container">
             <img
@@ -51,14 +69,14 @@
                 >Delete</button></a></form>
           </div>
 
-        </section> --}}
-        <form
+        </section>  --}}
+        {{!-- <form
               action="/admin/enrollment/{{this._id}}/delete/"
               method="post"
             ><a href=""><button
                   type="submit"
                   class="btn btn-outline-danger separed"
-                >Delete</button></a></form>
+                >Delete</button></a></form> --}}
 
       </div>
     </div>

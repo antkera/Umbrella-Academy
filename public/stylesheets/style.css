@@ -70,20 +70,10 @@ footer {
   height: 300px;
 }
 
-/* PALETA: https://www.colorhunt.co/palette/22092c872341be3144f05941 */
-
-/* color: 22092C
-color: 872341
-color: BE3144
-color:F 05941 */
-
-/* .umbrella{
-  background-color: rgb(34, 9, 44, 0.5);
-} */
 
 /* MODAL */
 
-.modal {
+/* .modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -91,15 +81,15 @@ color:F 05941 */
   left: 0;
   background-color: #1111111c;
   display: flex;
-  opacity: 0;
-  pointer-events: none;
-}
-.modal-show {
   opacity: 1;
   pointer-events: unset;
 }
-
-.modal-container {
+.modal-show {
+  opacity: 0;
+  pointer-events: none;
+}
+*/
+/* .modal-container {
   margin: auto;
   width: 90%;
   max-width: 600px;
@@ -138,4 +128,4 @@ color:F 05941 */
 .modal-close:hover {
   color: #fff;
   background-color: #5079f2;
-}
+}  */
