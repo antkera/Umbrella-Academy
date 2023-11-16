@@ -276,7 +276,21 @@ router.post("/enrollment/:id/delete", isLoggedIn, async (req, res, next) => {
     });
 
     res.redirect("/admin/enrollment/list");
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET "/admin/users/search" => renderiza la lista de Users con un criterio de busqueda 
+
+router.get("/users/search", async (req, res, next) => {
+  try {
+    const arrUsers = await User.find(req.query);
+    console.log(arrUsers);
+    res.render("admin/users", { arrUsers });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
