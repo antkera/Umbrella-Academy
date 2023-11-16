@@ -1,19 +1,67 @@
 <h3>Lista de Enrollments</h3>
-<a href="/admin/enrollment/create"> <button type="submit" class="btn btn-outline-primary active">Add</button></a>
+<a href="/admin/enrollment/create">
+  <button type="submit" class="btn btn-outline-primary active">Add</button></a>
 <li class="list-group-item"><b>Lista de matrículas</b></li>
 
-
-
+<ul>
   {{#each this.enrollments}}
-  <li class="list-group-item">{{this.userId.firstName}} ({{this.roleInCourse}}) <br> {{this.courseId.name}}</li>
-  <div class="btn-group" role="group" aria-label="Basic outlined example">
- <a href="/admin/enrollment/{{this._id}}/details/"> <button type="submit" class="btn btn-outline-primary">Detail</button></a>
- <a href="/admin/enrollment/{{this._id}}/edit/"> <button type="submit" class="btn btn-outline-primary">Edit</button></a>
- <div>
-  <form action="/admin/enrollment/{{this._id}}/delete/" method="post"><a href="" ><button type="submit" class="btn btn-outline-primary">Delete</button></a></form>
-  </div>
-</div>
+    <li class="list-group-item">{{this.userId.firstName}}
+      ({{this.roleInCourse}})
+      <br />
+      {{this.courseId.name}}</li>
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+      <a href="/admin/enrollment/{{this._id}}/details/">
+        <button
+          type="submit"
+          class="btn btn-outline-success separed"
+        >Detail</button></a>
+      <a href="/admin/enrollment/{{this._id}}/edit/">
+        <button type="submit" class="btn btn-outline-primary separed">Edit</button></a>
+      <div>
+        {{!-- <input type="checkbox" id="toggleButton{{this._id}}">
+<label for="toggleButton{{this._id}}">Cambiar Clase</label>
+<div id="elementToChange" class="initialClass">Contenido de la etiqueta</div>
+
+<style>
+  #toggleButton{{this._id}}:checked + section + #{{this._id}} {
+    
+  opacity: 1;
+  pointer-events: unset;
+  }
+</style>
+        
+        <section class="modal" id="{{this.id}}">
+
+          <div class="modal-container">
+            <img
+              src="/images/delete-button-png-28580 (1).png"
+              alt="imagen modal"
+              class="modal-img"
+            />
+            <h2 class="modal-title">Are you sure?</h2>
+            <p class="modal-paragraph">You are about to delete this element and
+              it becomes unavailable forever</p>
+            <a href="#" class="modal-close">cerrar modal</a>
+            <form
+              action="/admin/enrollment/{{this._id}}/delete/"
+              method="post"
+            ><a href=""><button
+                  type="submit"
+                  class="btn btn-outline-danger"
+                >Delete</button></a></form>
+          </div>
+
+        </section> --}}
+        <form
+              action="/admin/enrollment/{{this._id}}/delete/"
+              method="post"
+            ><a href=""><button
+                  type="submit"
+                  class="btn btn-outline-danger separed"
+                >Delete</button></a></form>
+
+      </div>
+    </div>
   {{/each}}
-
+  <script src="/js/modal.js"></script>
 </ul>
-
