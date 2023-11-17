@@ -3,6 +3,7 @@ const Course = require("../../models/Course.model");
 const User = require("../../models/User.model");
 const Enrolment = require("../../models/Enrolment.model");
 const router = express.Router();
+const { isLoggedIn } = require("../../middlewares/auth.middleware");
 
 // GET "/teacher/" => renderiza la pagina principal del profesor
 
@@ -12,8 +13,28 @@ router.get("/", (req, res, next) => {
 
 // GET "/teacher/courses" => renderiza la pagina courses del profesor
 
-router.get("/courses", (req, res, next) => {
-  res.render("teacher/courses");
+// GET "student/courses" => renderiza la pagina courses del estudiante
+router.get("/courses", isLoggedIn, async (req, res, next) => {
+  try {
+    const userId = req.session.user._id;
+    let allCourses = [];
+    const userEnrolments = await User.findById(userId).populate("enrolments");
+    if (userEnrolments.enrolments.length > 1) {
+      userEnrolments.enrolments.forEach(async (eachEnrolment) => {
+        let enrol = await Enrolment.findById(eachEnrolment._id).populate(
+          "courseId"
+        );
+        allCourses.push(await Course.findById(enrol.courseId._id));
+      });
+      res.render("student/courses", { allCourses });
+    } else {
+      let enrol = await Enrolment.findById(userEnrolments.enrolments[0]._id);
+      allCourses.push(await Course.findById(enrol.courseId._id));
+      res.render("student/courses", { allCourses });
+    }
+  } catch (error) {
+    next(error);
+  }
 });
 
 // GET "/teacher/courses/:id/enrollments"
@@ -29,17 +50,3 @@ router.get("/courses/:id/enrollments", async (req, res, next) => {
 });
 
 module.exports = router;
-
-//   try {
-//     const { enrolments } = await Course.findById(req.params.id).populate(
-//       "enrolments"
-//     );
-//     let users = [];
-//     enrolments.forEach(async (enrollment) => {
-//       users.push(await User.findById(enrollment.userId));
-//     });
-//     console.log(users);
-//     res.render("course/view-enrollments", users);
-//   } catch (error) {
-//     next(error);
-//   }

@@ -41,40 +41,40 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           {{#if isSessionActive}}
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >Admin</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/admin">admin home</a></li>
-                <li><a class="dropdown-item" href="/admin/courses">Admin courses</a></li>
-                <li><a class="dropdown-item" href="/admin/users">Admin users</a></li>
-                <li><a class="dropdown-item" href="/admin/enrollment/list">Admin
-                    Enrolments</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >Student</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/student">Student home</a></li>
-                <li><a class="dropdown-item" href="/student/create">Create
-                    students</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >Teacher</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/teacher">Teacher home</a></li>
-                <li><a class="dropdown-item" href="/teacher/create">Create
-                    teachers</a></li>
-              </ul>
+            {{#if isStudentSession}}
+              <li class="nav-items">
+                <a class="nav-link" href="/student/courses">Courses</a>
+              </li>
+            {{/if}}
+            {{#if isTeacherSession}}
+              <li class="nav-items">
+                <a class="nav-link" href="/teacher/courses">Courses</a>
+              </li>
+            {{/if}}
+            {{#if isAdminSession}}
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                >Administration</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/admin/courses">Courses
+                      administration</a></li>
+                  <li><a class="dropdown-item" href="/admin/users">Users
+                      administration</a></li>
+                  <li><a
+                      class="dropdown-item"
+                      href="/admin/enrollment/list"
+                    >Enrolments administration</a></li>
+                  <li><a
+                      class="dropdown-item"
+                      href="/teacher/content/list"
+                    >Content administration</a></li>
+                </ul>
+              </li>
+            {{/if}}
+            <li class="nav-items">
+              <a class="nav-link" href="/">Profile</a>
             </li>
             <li class="nav-items">
               <a class="nav-link" href="/auth/logout">Logout</a>
@@ -113,24 +113,6 @@
     {{/if}}
   {{/if}}
 
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <!-- Detalles de contacto -->
-        <div class="col-md-6">
-          <h3>Contact</h3>
-          <p>C/ de Pamplona, 96, 08018, Barcelona</p>
-          <p>Email: info@example.com</p>
-          <p>Teléfono: +1 123-456-7890</p>
-        </div>
-        <!-- Mapa con Leaflet.js -->
-        <div class="col-md-6">
-          <h3>Ubicación</h3>
-          <div id="map"></div>
-        </div>
-      </div>
-    </div>
-  </footer>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script

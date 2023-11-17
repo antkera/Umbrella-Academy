@@ -1,3 +1,28 @@
 <div class="container">
-  <h3>cursos en student</h3>
+  <h3>My courses</h3>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+
+    {{#each allCourses}}
+      <div class="col">
+        <div class="card">
+          <a href="/course/{{this._id}}/view">
+            <img
+              src="{{this.profilePic}}"
+              class="card-img-top"
+              alt="Course Image"
+              height="200px"
+            /></a>
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">{{this.description}}</p>
+            {{#if this.teacher}}
+              <p class="card-text"><small class="text-body-secondary">Teacher :
+                </small>
+                <a href="/user:userid">Teacher placeholder</a></p>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
