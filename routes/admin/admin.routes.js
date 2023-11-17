@@ -317,7 +317,7 @@ router.post(
         $pull: { enrolments: enrollmentDeleted._id },
       });
       if (req.session.user.role === "admin") {
-        res.redirect("/enrollment/list");
+        res.redirect("/admin/enrollment/list");
       } else {
         res.redirect("/");
       }
