@@ -53,9 +53,12 @@ router.get("/courses", isLoggedIn, async (req, res, next) => {
         );
         allCourses.push(await Course.findById(enrol.courseId._id));
       });
-      res.render("student/courses", { allCourses });
+      res.render("student/courses", {
+        allCourses,
+        test: userEnrolments.enrolments,
+      });
     } else if (userEnrolments.enrolments.length === 0) {
-      res.render("student/courses");
+      res.render("student/courses", { allCourses });
     } else {
       let enrol = await Enrolment.findById(userEnrolments.enrolments[0]._id);
       let course = await Course.findById(enrol.courseId._id);
