@@ -17,26 +17,18 @@ router.get("/", (req, res, next) => {
 router.get("/profile", async (req, res, next) => {
   try {
     const userId = req.session.user._id;
-    let courses = [];
-    const user = await User.findById(userId).populate("enrolments");
-    if (user.enrolments.length > 1) {
-      user.enrolments.forEach(async (eachEnrolment) => {
-        let enrol = await Enrolment.findById(eachEnrolment._id).populate(
-          "courseId"
-        );
-        courses.push(await Course.findById(enrol.courseId._id));
-      });
-      res.render("teacher/profile", { user, courses });
-    } else if (user.enrolments.length === 0) {
-      res.render("teacher/profile", { user, courses });
-    } else {
-      let enrol = await Enrolment.findById(user.enrolments[0]._id).populate(
-        "courseId"
-      );
+    const user = await User.findById(userId).populate({
+      path: "enrolments",
+      populate: {
+        path: "courseId",
+        model: "Course",
+      },
+    });
+    const courses = user.enrolments.map(
+      (eachEnrolment) => eachEnrolment.courseId
+    );
 
-      courses.push(await Course.findById(enrol.courseId._id));
-      res.render("teacher/profile", { user, courses });
-    }
+    res.render("teacher/profile", { user, courses });
   } catch (error) {
     next(error);
   }
