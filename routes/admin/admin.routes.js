@@ -119,26 +119,18 @@ router.get(
       const fechaU = moment(updatedAt).format("LLLL");
 
       const userId = req.params.id;
-      let courses = [];
-      const user = await User.findById(userId).populate("enrolments");
-      if (user.enrolments.length > 1) {
-        user.enrolments.forEach(async (eachEnrolment) => {
-          let enrol = await Enrolment.findById(eachEnrolment._id).populate(
-            "courseId"
-          );
-          courses.push(await Course.findById(enrol.courseId._id));
-        });
-        res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
-      } else if (user.enrolments.length === 0) {
-        res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
-      } else {
-        let enrol = await Enrolment.findById(user.enrolments[0]._id).populate(
-          "courseId"
-        );
+      const user = await User.findById(userId).populate({
+        path: "enrolments",
+        populate: {
+          path: "courseId",
+          model: "Course",
+        },
+      });
+      const courses = user.enrolments.map(
+        (eachEnrolment) => eachEnrolment.courseId
+      );
 
-        courses.push(await Course.findById(enrol.courseId._id));
-        res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
-      }
+      res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
     } catch (error) {
       next(error);
     }
