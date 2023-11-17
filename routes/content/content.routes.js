@@ -44,10 +44,15 @@ router.get("/:id/view", async (req, res, next) => {
   try {
     const id = req.params.id;
     const oneContent = await Content.findById(id);
+
     const course = await Course.findOne({ contents: oneContent }).select({
       _id: 1,
     });
-    res.render("content/view", { oneContent, course: course._id });
+    if (course) {
+      res.render("content/view", { oneContent, course: course._id });
+    } else {
+      res.render("content/view", { oneContent });
+    }
   } catch (error) {
     next(error);
   }

@@ -1,0 +1,114 @@
+<h3>lista de contents</h3>
+
+<div id=" searchbar">
+  <form action="/teacher/content/list" method="get">
+    <button class="btn btn-outline-info" type="submit">Search</button>
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      value="{{this.lastQuery}}"
+    />
+    <select class="form-select form-select-lg mb-3" name="contentType">
+      <option value="jpeg">jpeg</option>
+      <option value="pdf">pdf</option>
+      <option value="png">png</option>
+      <option selected value="">All</option>
+    </select>
+  </form>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {{#each arrContents}}
+    <div class="col">
+      <div class="card">
+        <a href="{{this.contentData}}">{{this.name}}.{{this.contentType}}</a>
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+          <p class="card-text">{{this.description}}</p>
+          <p><embed
+              src="{{this.contentData}}"
+              type="application/pdf"
+              height="300px"
+              width="60%"
+            /></p>
+
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <a href="/content/{{this._id}}/edit">
+              <button type="button" class="btn btn-outline-primary"><i
+                  class="bi bi-gear"
+                ></i>
+              </button></a>
+            <form method="post" action="/content/{{this._id}}/delete">
+              <a href="">
+                <button type="submit" class="btn btn-outline-primary"><i
+                    class="bi bi-trash"
+                  ></i></button></a>
+            </form>
+          </div>
+        </div>
+        <p>
+          <a href="/content/{{this._id}}/view"><button
+              class="btn btn-outline-primary"
+            >View content</button></a>
+        </p>
+
+        <div>
+          <button
+            type="submit"
+            class="btn btn-outline-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#delete-enrolments{{this._id}}"
+          ><i class="bi bi-trash"></i> Add to course</button>
+
+          <div class="container">
+            <div id="delete-enrolments{{this._id}}" class="modal" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      At witch course must be added to?
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/teacher/content/addToCourse" method="post">
+                    
+                      <input
+                        type="text"
+                        name="idContent"
+                        style="visibility: collapse;"
+                        value="{{this._id}}"
+                      />
+                      <select
+                        class="form-select form-select-lg mb-3"
+                        name="idCourse"
+                      >    
+                        {{#each ../arrCourses}}
+                          <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+
+                      <a href=""><button
+                          type="submit"
+                          class="btn btn-primary separed"
+                        >Add</button></a></form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        {{!-- <p>
+          <a href="/content/{{this._id}}/view"><button
+              class="btn btn-outline-primary"
+            >Add to course</button></a>
+        </p> --}}
+      </div>
+    </div>
+  {{/each}}
+</div>

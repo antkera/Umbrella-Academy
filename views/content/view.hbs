@@ -3,10 +3,19 @@
   <a class="navbar-brand" href="#">{{oneContent.name}}</a>
   <!-- Add additional navigation elements here -->
 </nav>
+
+{{#if course}}
 <p>
   <a href="/course/{{course}}/view"><button class="btn btn-outline-primary">Back
       to the course</button></a>
 </p>
+{{else}}
+<p>
+  <a href="/teacher/content/list"><button class="btn btn-outline-primary">Back
+      to the list</button></a>
+</p>
+{{/if}}
+
 <div class="row row-cols-1 row-cols-md-1 g-12">
   <div class="col">
     <div class="card">

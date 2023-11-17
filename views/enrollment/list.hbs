@@ -2,6 +2,17 @@
     <button type="submit" class="btn btn-outline-success active"><i
         class="bi bi-plus"
       ></i></button></a></h3>
+<div id=" searchbar">
+  <form action="/admin/enrolments/search" method="get">
+    <button class="btn btn-outline-info" type="submit">Search</button>
+    <select class="form-select form-select-lg mb-3" name="roleInCourse" id="">
+      <option value="manager">Manager</option>
+      <option value="editingteacher">editingteacher</option>
+      <option defaul value="student">student</option>
+      <option value="teacher">teacher</option>
+    </select>
+  </form>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -43,7 +54,7 @@
                 class="btn btn-outline-danger"
                 data-bs-toggle="modal"
                 data-bs-target="#delete-enrolments{{this._id}}"
-              ><i class="bi bi-trash"></i> elim</button>
+              ><i class="bi bi-trash"></i> Delete</button>
 
               <div class="container">
                 <div
