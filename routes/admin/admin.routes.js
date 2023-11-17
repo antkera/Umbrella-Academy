@@ -113,49 +113,32 @@ router.get(
   isAdmin,
   async (req, res, next) => {
     try {
-      const {
-        firstName,
-        lastName,
-        phone,
-        age,
-        educativeLevel,
-        role,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-        enrolments,
-        email,
-      } = await User.findById(req.params.id);
-
-      // const cursos = []
-      // const cursos = await Course.find({ "_id": {$in: [enrolments._id]}})
-
-      // enrolments.forEach(async (element) => {
-      //   try {
-      //     console.log(element);
-      //     console.log(getId("new ObjectId('6553ab37a284baf6d87d6f1e')"));
-
-      //     cursos.push(await Course.findById(getId(element.courseId)))
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
-
-      // });
-
-      // console.log(cursos);
+      const { createdAt: createdAt, updatedAt: updatedAt } =
+        await User.findById(req.params.id);
       const fechaC = moment(createdAt).format("LLLL");
       const fechaU = moment(updatedAt).format("LLLL");
-      res.render("admin/usersDetails", {
-        firstName,
-        lastName,
-        phone,
-        age,
-        educativeLevel,
-        role,
-        fechaC,
-        fechaU,
-        enrolments,
-        email,
-      });
+
+      const userId = req.params.id;
+      let courses = [];
+      const user = await User.findById(userId).populate("enrolments");
+      if (user.enrolments.length > 1) {
+        user.enrolments.forEach(async (eachEnrolment) => {
+          let enrol = await Enrolment.findById(eachEnrolment._id).populate(
+            "courseId"
+          );
+          courses.push(await Course.findById(enrol.courseId._id));
+        });
+        res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
+      } else if (user.enrolments.length === 0) {
+        res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
+      } else {
+        let enrol = await Enrolment.findById(user.enrolments[0]._id).populate(
+          "courseId"
+        );
+
+        courses.push(await Course.findById(enrol.courseId._id));
+        res.render("admin/usersDetails", { user, courses, fechaC, fechaU });
+      }
     } catch (error) {
       next(error);
     }
@@ -334,7 +317,6 @@ router.post(
         $pull: { enrolments: enrollmentDeleted._id },
       });
       if (req.session.user.role === "admin") {
-        res.render("enrollment/list");
       } else {
         res.redirect("/");
       }
