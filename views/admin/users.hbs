@@ -1,44 +1,64 @@
-<h4 class="list-group-item"><b>Users list:</b></h4>
+<div class="container">
+  <h4 class="list-group-item"><b>Users list:</b></h4>
 
-<div id=" searchbar">
-  <form action="/admin/users/search" method="get">
-    <label>Search</label>
-    <input
-      required
-      type="text"
-      class="form-control"
-      name="firstName"
-      placeholder="by name"
-    />
-  </form>
-</div>
-<div class="lateral">
-  <ul class="list-group">
-    {{#each this.arrUsers}}
-      <li class="list-group-item">{{this.firstName}}
-        <br />
-        {{this.email}}</li>
-      <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <a href="/admin/users/{{this._id}}/details/">
-          <button
-            type="submit"
-            class="btn btn-outline-primary"
-          >Detail</button></a>
-        <a href="/admin/users/{{this._id}}/edit/">
-          <button
-            type="submit"
-            class="btn btn-outline-primary"
-          >Edit</button></a>
-        <div>
-          <form action="/admin/users/{{this._id}}/delete/" method="post"><a
-              href=""
-            ><button
-                type="submit"
-                class="btn btn-outline-primary"
-              >Delete</button></a></form>
-        </div>
-      </div>
-    {{/each}}
-
-  </ul>
+  <div id=" searchbar">
+    <form action="/admin/users/search" method="get">
+      <label>Search</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        name="firstName"
+        placeholder="by name"
+      />
+    </form>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each this.arrUsers}}
+        <tr>
+          <th scope="row">{{this.firstName}}</th>
+          <td>{{this.lastName}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.role}}</td>
+          <td>
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic outlined example"
+            >
+              <a href="/admin/users/{{this._id}}/details/">
+                <button
+                  type="submit"
+                  class="btn btn-outline-success"
+                >Detail</button></a>
+              <a href="/admin/users/{{this._id}}/edit/">
+                <button
+                  type="submit"
+                  class="btn btn-outline-warning"
+                >Edit</button></a>
+              <div>
+                <form
+                  action="/admin/users/{{this._id}}/delete/"
+                  method="post"
+                ><a href=""><button
+                      type="submit"
+                      class="btn btn-outline-danger"
+                    >Delete</button></a></form>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>

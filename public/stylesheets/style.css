@@ -1,9 +1,11 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
 }
 nav {
   background-color: rgba(0, 0, 0, 0.476);
   padding: 40px 100px;
+  height: 5vh;
 }
 
 a {
@@ -62,8 +64,39 @@ footer {
   background-color: #000000;
   color: #ffffff;
   padding: 30px 0;
+  width: 100%;
+  bottom: 0;
+  position: fixed;
 }
 
 #map {
-  height: 300px;
+  height: 20vh;
+}
+
+.admin {
+  background-image: url("/images/admin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95vh;
+}
+
+.teacher {
+  background-image: url("/images/teacher.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95vh;
+}
+
+.student {
+  background-image: url("/images/student.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95vh;
+}
+
+.user {
+  background-image: url("/images/user.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 95vh;
 }

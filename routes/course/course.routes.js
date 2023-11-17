@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Course = require("../../models/Course.model");
 const uploader = require("../../middlewares/cloudinary.middleware");
+const { isLoggedIn, isAdmin } = require("../../middlewares/auth.middleware");
 
 // GET "/course/:id/view" => renderiza la vista de cursos de admin
-router.get("/:id/view", async (req, res, next) => {
+router.get("/:id/view", isLoggedIn, async (req, res, next) => {
   try {
     const id = req.params.id;
     const oneCourse = await Course.findById(id).populate("contents");

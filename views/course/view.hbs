@@ -1,55 +1,184 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">{{oneCourse.name}}</a>
-  <!-- Add additional navigation elements here -->
-</nav>
-<p>
-  <a href="/content/{{oneCourse._id}}/add"><button
-      type="button"
-      class="btn btn-success"
-    >Add Contents</button>
-  </a>
-  <a href="/teacher/courses/{{oneCourse._id}}/enrollments"><button type="button" class="btn btn-success">Enrolments</button>
-  </a></p>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  {{#each content}}
-    <div class="col">
-      <div class="card">
-        <a href="{{this.contentData}}">{{this.name}}.{{this.contentType}}</a>
-        <div class="card-body">
-          <h5 class="card-title">{{this.name}}</h5>
-          <p class="card-text">{{this.description}}</p>
-          <p><embed
-              src="{{this.contentData}}"
-              type="application/pdf"
-              height="300px"
-              width="60%"
-            /></p>
+<div class="container">
 
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href=""><h3
+        >{{oneCourse.name}}</h3></a></li>
+  </ul>
+  {{#if isAdminSession}}
+    <p>
+      <a href="/content/{{oneCourse._id}}/add"><button
+          type="button"
+          class="btn btn-success"
+        >Add Contents</button>
+      </a>
+      <a href="/teacher/courses/{{oneCourse._id}}/enrollments"><button
+          type="button"
+          class="btn btn-success"
+        >Enrolments</button>
+      </a></p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {{#each content}}
+        <div class="col">
+          <div class="card">
+            <embed src="{{this.contentData}}" width="100%" height="364px" />
+            <div class="card-body">
+              <h5 class="card-title">{{this.name}}</h5>
+              <p class="card-text">{{this.description}}</p>
+              <p><img
+                  src="/images/{{this.contentType}}.png"
+                  width="20px"
+                  height="20px"
+                />
+                <a href="{{this.contentData}}" download>{{this.name}}</a></p>
+            </div>
+            <p>
+              <a href="/content/{{this._id}}/view"><button
+                  class="btn btn-primary"
+                >View content</button></a>
+            </p>
+          </div>
           <div
             class="btn-group"
             role="group"
             aria-label="Basic outlined example"
           >
             <a href="/content/{{this._id}}/edit">
-              <button type="button" class="btn btn-outline-primary"><i
+              <button type="button" class="btn btn-warning"><i
                   class="bi bi-gear"
                 ></i>
               </button></a>
-            <form method="post" action="/content/{{this._id}}/delete">
-              <a href="">
-                <button type="submit" class="btn btn-outline-primary"><i
-                    class="bi bi-trash"
-                  ></i></button></a>
-            </form>
+
+            <button
+              type="submit"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#delete-content{{this._id}}"
+            ><i class="bi bi-trash"></i></button>
+            <div class="container">
+              <div id="delete-content{{this._id}}" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">
+                        Are you sure you want to delete this content?
+                      </h5>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="/content/{{this._id}}/delete">
+
+                        <button type="submit" class="btn btn-danger"><i
+                            class="bi bi-trash"
+                          ></i>Delete Course</button></form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <p>
-          <a href="/content/{{this._id}}/view"><button
-              class="btn btn-outline-primary"
-            >View content</button></a>
-        </p>
-      </div>
+      {{/each}}
     </div>
-  {{/each}}
+  {{/if}}
+  {{#if isTeacherSession}}
+    <p>
+      <a href="/content/{{oneCourse._id}}/add"><button
+          type="button"
+          class="btn btn-success"
+        >Add Contents</button>
+      </a>
+      <a href="/teacher/courses/{{oneCourse._id}}/enrollments"><button
+          type="button"
+          class="btn btn-success"
+        >Enrolments</button>
+      </a></p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {{#each content}}
+        <div class="col">
+          <div class="card">
+            <embed src="{{this.contentData}}" width="100%" height="364px" />
+            <div class="card-body">
+              <h5 class="card-title">{{this.name}}</h5>
+              <p class="card-text">{{this.description}}</p>
+              <p><img
+                  src="/images/{{this.contentType}}.png"
+                  width="20px"
+                  height="20px"
+                />
+                <a href="{{this.contentData}}" download>{{this.name}}</a></p>
+            </div>
+            <p>
+              <a href="/content/{{this._id}}/view"><button
+                  class="btn btn-primary"
+                >View content</button></a>
+            </p>
+          </div>
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <a href="/content/{{this._id}}/edit">
+              <button type="button" class="btn btn-warning"><i
+                  class="bi bi-gear"
+                ></i>
+              </button></a>
+            <button
+              type="submit"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#delete-content{{this._id}}"
+            ><i class="bi bi-trash"></i></button>
+            <div class="container">
+              <div id="delete-content{{this._id}}" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">
+                        Are you sure you want to delete this content?
+                      </h5>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="/content/{{this._id}}/delete">
+
+                        <button type="submit" class="btn btn-danger"><i
+                            class="bi bi-trash"
+                          ></i>Delete Course</button></form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if isStudentSession}}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {{#each content}}
+        <div class="col">
+          <div class="card">
+            <embed src="{{this.contentData}}" width="100%" height="364px" />
+            <div class="card-body">
+              <h5 class="card-title">{{this.name}}</h5>
+              <p class="card-text">{{this.description}}</p>
+              <p><img
+                  src="/images/{{this.contentType}}.png"
+                  width="20px"
+                  height="20px"
+                />
+                <a href="{{this.contentData}}" download>{{this.name}}</a></p>
+            </div>
+            <p>
+              <a href="/content/{{this._id}}/view"><button
+                  class="btn btn-primary"
+                >View content</button></a>
+            </p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+
 </div>

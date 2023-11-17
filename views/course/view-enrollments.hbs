@@ -1,26 +1,83 @@
-<h3>enrollments</h3>
-<h3>Users Details</h3>
-{{#each enrollments}}
-<a href="/admin/users"> 🔙 Back to the list</a>
-<div>
-<h1>{{this.userId.email}}</h1>
-<div>
-        <h3>Name:</h3>
-<h4>{{this.userId.firstName}}</h4>
-    <h3>Last name:</h3>
-<h4>{{this.userId.lastName}}</h4>
-    <h3>Phone number:</h3>
-<h4>{{this.userId.phone}}</h4>
-    <h3>Age:</h3>
-<h4>{{this.userId.age}}</h4>
-    <h3>Educational level:</h3>
-<h4>{{this.userId.educativeLevel}}</h4>
-    <h3>Role:</h3>
-<h4>{{this.roleInCourse}}</h4>
+<div class="container">
+  <h3>Lista de Enrollments<a href="/admin/enrollment/create">
+      <button type="submit" class="btn btn-outline-success active"><i
+          class="bi bi-plus"
+        ></i></button></a></h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each enrollments}}
+        <tr>
+          <th scope="row">{{this.userId.firstName}}</th>
+          <td>{{this.userId.lastName}}</td>
+          <td>{{this.userId.email}}</td>
+          <td>{{this.roleInCourse}}</td>
+          <td>{{this.courseId.name}}</td>
+          <td>
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic outlined example"
+            >
+              <a href="/admin/enrollment/{{this._id}}/details/">
+                <button
+                  type="submit"
+                  class="btn btn-outline-primary separed"
+                >Detail</button></a>
+              <a href="/admin/enrollment/{{this._id}}/edit/">
+                <button
+                  type="submit"
+                  class="btn btn-outline-warning separed"
+                >Edit</button></a>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-outline-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#delete-enrolments{{this._id}}"
+                ><i class="bi bi-trash"></i> Delete</button>
 
+                <div class="container">
+                  <div
+                    id="delete-enrolments{{this._id}}"
+                    class="modal"
+                    tabindex="-1"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">
+                            Are you sure you want to delete this enrollment?
+                          </h5>
+                        </div>
+                        <div class="modal-body">
+                          <form
+                            action="/admin/enrollment/{{this._id}}/delete/"
+                            method="post"
+                          ><a href=""><button
+                                type="submit"
+                                class="btn btn-danger separed"
+                              >Delete</button></a></form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-{{/each}}
-
-</ul>
-</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>

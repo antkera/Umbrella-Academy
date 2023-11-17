@@ -1,37 +1,41 @@
-<h3>All Courses</h3>
-<p>
-  <a href="/course/add"><button type="button" class="btn btn-success">Add Course</button>
-  </a></p>
-<div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="container">
+  <h3>All Courses</h3>
+  <p>
+    <a href="/course/add"><button type="button" class="btn btn-success">Add
+        Course</button>
+    </a></p>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
 
-  {{#each allCourses}}
-    <div class="col">
-      <div class="card h-100">
-        <a href="/course/{{this._id}}/view">
-          <img
-            src="{{this.profilePic}}"
-            class="card-img-top"
-            alt="Course Image"
-          /></a>
-        <div class="card-body">
-          <h5 class="card-title">{{this.name}}</h5>
-          <p class="card-text">{{this.description}}</p>
-          {{#if this.teacher}}
-            <p class="card-text"><small class="text-body-secondary">Teacher :
-              </small>
-              <a href="/user:userid">Teacher placeholder</a></p>
-          {{/if}}
+    {{#each allCourses}}
+      <div class="col">
+        <div class="card">
+          <a href="/course/{{this._id}}/view">
+            <img
+              src="{{this.profilePic}}"
+              class="card-img-top"
+              alt="Course Image"
+              height="200px"
+            /></a>
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">{{this.description}}</p>
+            {{#if this.teacher}}
+              <p class="card-text"><small class="text-body-secondary">Teacher :
+                </small>
+                <a href="/user:userid">Teacher placeholder</a></p>
+            {{/if}}
+          </div>
         </div>
         <div class="btn-group" role="group" aria-label="Basic outlined example">
           <a href="/course/{{this._id}}/edit">
-            <button type="button" class="btn btn-outline-primary"><i
+            <button type="button" class="btn btn-warning"><i
                 class="bi bi-gear"
               ></i>
             </button></a>
           {{! Modal trigger }}
           <button
             type="submit"
-            class="btn btn-outline-primary"
+            class="btn btn-danger"
             data-bs-toggle="modal"
             data-bs-target="#delete-course{{this._id}}"
           ><i class="bi bi-trash"></i></button>
@@ -58,6 +62,6 @@
           {{! End modal }}
         </div>
       </div>
-    </div>
-  {{/each}}
+    {{/each}}
+  </div>
 </div>

@@ -1,173 +1,184 @@
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <a href="/admin/users">  Back to the list</a>
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+<div class="container">
+  <section style="background-color: #eee;">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <a href="/admin/users"> Back to the list</a>
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">edit user</p>
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">edit
+                    user</p>
 
-                <form
-                  class="mx-1 mx-md-4"
-                  action="/admin/users/{{this._id}}/edit"
-                  method="post"
-                >
+                  <form
+                    class="mx-1 mx-md-4"
+                    action="/admin/users/{{this._id}}/edit"
+                    method="post"
+                  >
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      {{! nombre }}
-                      {{#if this.errorFullfillMessage}}
-                        <b class="error">{{this.errorFullfillMessage}}</b>
-                      {{/if}}
-                      {{#if this.firstName}}
-                        <input
-                          required
-                          type="text"
-                          class="form-control"
-                          name="firstName"
-                          value="{{this.firstName}}"
-                        />
-                      {{else}}
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{! nombre }}
+                        {{#if this.errorFullfillMessage}}
+                          <b class="error">{{this.errorFullfillMessage}}</b>
+                        {{/if}}
+                        {{#if this.firstName}}
+                          <input
+                            required
+                            type="text"
+                            class="form-control"
+                            name="firstName"
+                            value="{{this.firstName}}"
+                          />
+                        {{else}}
 
-                        <input
-                          required
-                          type="text"
-                          class="form-control"
-                          name="firstName"
-                        />
-                      {{/if}}
-                      <label class="form-label" for="form3Example1c">Your Name</label>
+                          <input
+                            required
+                            type="text"
+                            class="form-control"
+                            name="firstName"
+                          />
+                        {{/if}}
+                        <label class="form-label" for="form3Example1c">Your Name</label>
+                      </div>
                     </div>
-                  </div>
-                  {{! apellido }}
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      {{#if this.lastName}}
-                        <input
-                          required
-                          type="text"
-                          class="form-control"
-                          name="lastName"
-                          value="{{this.lastName}}"
-                        />
-                      {{else}}
-                        <input
-                          required
-                          type="text"
-                          class="form-control"
-                          name="lastName"
-                        />
-                      {{/if}}
+                    {{! apellido }}
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{#if this.lastName}}
+                          <input
+                            required
+                            type="text"
+                            class="form-control"
+                            name="lastName"
+                            value="{{this.lastName}}"
+                          />
+                        {{else}}
+                          <input
+                            required
+                            type="text"
+                            class="form-control"
+                            name="lastName"
+                          />
+                        {{/if}}
 
-                      <label class="form-label" for="form3Example1c">Your
-                        lastname</label>
+                        <label class="form-label" for="form3Example1c">Your
+                          lastname</label>
+                      </div>
                     </div>
-                  </div>
-                  {{! telefono }}
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      {{#if this.phone}}
-                        <input
-                          type="number"
-                          class="form-control"
-                          name="phone"
-                          value="{{this.phone}}"
-                        />
-                      {{else}}
-                        <input
-                          type="number"
-                          class="form-control"
-                          name="phone"
-                          value="{{this.phone}}"
-                        />
-                      {{/if}}
-                      <label class="form-label" for="form3Example1c">Your phone
-                        number</label>
+                    {{! telefono }}
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{#if this.phone}}
+                          <input
+                            type="number"
+                            class="form-control"
+                            name="phone"
+                            value="{{this.phone}}"
+                          />
+                        {{else}}
+                          <input
+                            type="number"
+                            class="form-control"
+                            name="phone"
+                            value="{{this.phone}}"
+                          />
+                        {{/if}}
+                        <label class="form-label" for="form3Example1c">Your
+                          phone number</label>
+                      </div>
                     </div>
-                  </div>
-                  {{! edad }}
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      {{#if this.age}}
-                        <input
-                          type="number"
-                          class="form-control"
-                          name="age"
-                          value="{{this.age}}"
-                        />
-                      {{else}}
-                        <input type="number" class="form-control" name="age" />
-                      {{/if}}
-                      <label class="form-label" for="form3Example1c">Your age</label>
+                    {{! edad }}
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{#if this.age}}
+                          <input
+                            type="number"
+                            class="form-control"
+                            name="age"
+                            value="{{this.age}}"
+                          />
+                        {{else}}
+                          <input
+                            type="number"
+                            class="form-control"
+                            name="age"
+                          />
+                        {{/if}}
+                        <label class="form-label" for="form3Example1c">Your age</label>
+                      </div>
                     </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-
-                      <select
-                        name="educativeLevel"
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option value="1º ESO">1º ESO</option>
-                        <option value="2º ESO">2º ESO</option>
-                        <option value="3º ESO">3º ESO</option>
-                        <option value="4º ESO">4º ESO</option>
-                        <option value="Not asigned">Not asigned</option>
-                        <option selected value="{{this.educativeLevel}}">Same: ({{this.educativeLevel}})</option>
-                      </select>
-
-                      <label class="form-label" for="form3Example4c">Educative
-                        level</label>
                     </div>
-                  </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
+                        <select
+                          name="educativeLevel"
+                          class="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option value="1º ESO">1º ESO</option>
+                          <option value="2º ESO">2º ESO</option>
+                          <option value="3º ESO">3º ESO</option>
+                          <option value="4º ESO">4º ESO</option>
+                          <option value="Not asigned">Not asigned</option>
+                          <option selected value="{{this.educativeLevel}}">Same:
+                            ({{this.educativeLevel}})</option>
+                        </select>
 
-                      <select
-                        name="role"
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option value="admin">admin</option>
-                        <option value="teacher">teacher</option>
-                        <option value="student">student</option>
-                        <option selected value="{{this.role}}">Same: ({{this.role}})</option>
-                      </select>
-
-                      <label class="form-label" for="form3Example4c">Educative
-                        level</label>
+                        <label class="form-label" for="form3Example4c">Educative
+                          level</label>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="submit" class="btn btn-warning btn-lg">Confirm
-                      Changes</button>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
 
-                  </div>
+                        <select
+                          name="role"
+                          class="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option value="admin">admin</option>
+                          <option value="teacher">teacher</option>
+                          <option value="student">student</option>
+                          <option selected value="{{this.role}}">Same: ({{this.role}})</option>
+                        </select>
 
-                </form>
+                        <label class="form-label" for="form3Example4c">Educative
+                          level</label>
+                      </div>
+                    </div>
+
+                    <div
+                      class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-warning btn-lg"
+                      >Confirm Changes</button>
+
+                    </div>
+
+                  </form>
+
+                </div>
 
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

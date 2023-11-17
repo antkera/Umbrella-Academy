@@ -1,3 +1,33 @@
-<div class="umbrella"><h1>{{appTitle}} 🚀</h1>
-  <p>Welcome Ironhacker!</p>
+<div class="container">
+  {{#if isAdminSession}}
+    <h1>Hello Administrator</h1>
+  {{else}}
+    {{#if isTeacherSession}}
+      <h1>Hello Teacher</h1>
+    {{else}}
+      {{#if isStudentSession}}
+        <h1>Hello Student</h1>
+      {{else}}
+        <h1>Hello User</h1>
+      {{/if}}
+    {{/if}}
+  {{/if}}
 </div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <!-- Detalles de contacto -->
+      <div class="col-md-6">
+        <h3>Contact</h3>
+        <p>C/ de Pamplona, 96, 08018, Barcelona</p>
+        <p>Email: info@umbrellaacademy.com</p>
+        <p>Teléfono: +1 123-456-7890</p>
+      </div>
+      <!-- Mapa con Leaflet.js -->
+      <div class="col-md-6">
+        <h3>Ubicación</h3>
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</footer>
