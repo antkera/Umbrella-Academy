@@ -28,7 +28,7 @@ router.get("/profile", async (req, res, next) => {
     } else if (user.enrolments.length === 0) {
       res.render("student/profile", { user, courses });
     } else {
-      let enrol = await Enrolment.findById(eachEnrolment[0]._id).populate(
+      let enrol = await Enrolment.findById(user.enrolments._id).populate(
         "courseId"
       );
 
