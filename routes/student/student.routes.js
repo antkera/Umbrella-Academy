@@ -44,8 +44,6 @@ router.get("/profile", async (req, res, next) => {
 router.get("/courses", isLoggedIn, async (req, res, next) => {
   try {
     const userId = req.session.user._id;
-    let allCourses = [];
-    //const userEnrolments = await User.findById(userId).populate("enrolments");
 
     const userEnrolments = await User.findById(userId).populate({
       path: "enrolments",
@@ -54,29 +52,10 @@ router.get("/courses", isLoggedIn, async (req, res, next) => {
         model: "Course",
       },
     });
-    allCourses = userEnrolments.enrolments.map(
+    const allCourses = userEnrolments.enrolments.map(
       (eachEnrolment) => eachEnrolment.courseId
     );
     res.render("student/courses", { allCourses });
-
-    // if (userEnrolments.enrolments.length > 1) {
-    //   userEnrolments.enrolments.forEach(async (eachEnrolment) => {
-    //     let enrol = await Enrolment.findById(eachEnrolment._id).populate(
-    //       "courseId"
-    //     );
-    //     allCourses.push(await Course.findById(enrol.courseId._id));
-    //   });
-    //   res.render("student/courses", {
-    //     allCourses,
-    //   });
-    // } else if (userEnrolments.enrolments.length === 0) {
-    //   res.render("student/courses", { allCourses });
-    // } else {
-    //   let enrol = await Enrolment.findById(userEnrolments.enrolments[0]._id);
-    //   let course = await Course.findById(enrol.courseId._id);
-    //   allCourses.push(course);
-    //   res.render("student/courses", { allCourses });
-    // }
   } catch (error) {
     next(error);
   }
