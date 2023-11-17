@@ -72,8 +72,8 @@ router.get("/courses", isLoggedIn, async (req, res, next) => {
 router.get("/courses/:id/enrollments", async (req, res, next) => {
   try {
     const enrollments = await Enrolment.find({ courseId: req.params.id })
-      .populate("userId")
-      .select({ userId: 1 });
+      .populate("userId courseId")
+      .select({ userId: 1, roleInCourse: 1 });
     console.log(enrollments);
     res.render("course/view-enrollments", { enrollments });
   } catch (error) {
