@@ -11,7 +11,7 @@ const contentSchema = new Schema(
     },
     contentType: {
       type: String,
-      enum: ["jpeg", "pdf", "png"],
+      enum: ["jpeg", "jpg", "pdf", "png"],
     },
     contentData: String,
     visibility: {
