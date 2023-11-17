@@ -55,7 +55,7 @@ router.get("/courses", isLoggedIn, async (req, res, next) => {
       });
       res.render("student/courses", {
         allCourses,
-        test: allCourses,
+        test: userEnrolments.enrolments.length,
       });
     } else if (userEnrolments.enrolments.length === 0) {
       res.render("student/courses", { allCourses });
