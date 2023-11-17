@@ -25,6 +25,8 @@ router.get("/profile", async (req, res, next) => {
         courses.push(await Course.findById(enrol.courseId._id));
       });
       res.render("student/profile", { user, courses });
+    } else if (user.enrolments.length === 0) {
+      res.render("student/profile", { user, courses });
     } else {
       let enrol = await Enrolment.findById(eachEnrolment[0]._id).populate(
         "courseId"
@@ -52,6 +54,8 @@ router.get("/courses", isLoggedIn, async (req, res, next) => {
         allCourses.push(await Course.findById(enrol.courseId._id));
       });
       res.render("student/courses", { allCourses });
+    } else if (userEnrolments.enrolments.length === 0) {
+      res.render("student/courses");
     } else {
       let enrol = await Enrolment.findById(userEnrolments.enrolments[0]._id);
       let course = await Course.findById(enrol.courseId._id);

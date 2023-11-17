@@ -125,6 +125,7 @@ router.get(
         enrolments,
         email,
       } = await User.findById(req.params.id);
+
       // const cursos = []
       // const cursos = await Course.find({ "_id": {$in: [enrolments._id]}})
 
@@ -333,6 +334,7 @@ router.post(
         $pull: { enrolments: enrollmentDeleted._id },
       });
       if (req.session.user.role === "admin") {
+        res.render("enrollment/list");
       } else {
         res.redirect("/");
       }
