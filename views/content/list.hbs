@@ -1,9 +1,11 @@
 <div class="container">
-<h3>lista de contents</h3>
+<h3>Contents</h3>
 
 <div id=" searchbar">
+
   <form action="/teacher/content/list" method="get">
-    <button class="btn btn-outline-info" type="submit">Search</button>
+    <button class="btn btn-info" type="submit">Search</button>
+ <a href="/teacher/content/create"><button class="btn btn-success" type="button"><i class="bi bi-plus"></i></button> </i></a>
     <input
       class="form-control"
       type="text"
@@ -12,6 +14,7 @@
     />
     <select class="form-select form-select-lg mb-3" name="contentType">
       <option value="jpeg">jpeg</option>
+      <option value="jpg">jpg</option>
       <option value="pdf">pdf</option>
       <option value="png">png</option>
       <option selected value="">All</option>
