@@ -77,26 +77,26 @@ footer {
   background-image: url("/images/admin.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 95vh;
+  min-height: 95vh;
 }
 
 .teacher {
   background-image: url("/images/teacher.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 95vh;
+  min-height: 95vh;
 }
 
 .student {
   background-image: url("/images/student.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 95vh;
+  min-height: 95vh;
 }
 
 .user {
   background-image: url("/images/user.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 95vh;
+  min-height: 95vh;
 }

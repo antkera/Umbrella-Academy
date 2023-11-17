@@ -45,10 +45,16 @@
               <li class="nav-items">
                 <a class="nav-link" href="/student/courses">Courses</a>
               </li>
+              <li class="nav-items">
+                <a class="nav-link" href="/student/profile">Profile</a>
+              </li>
             {{/if}}
             {{#if isTeacherSession}}
               <li class="nav-items">
                 <a class="nav-link" href="/teacher/courses">Courses</a>
+              </li>
+              <li class="nav-items">
+                <a class="nav-link" href="/teacher/profile">Profile</a>
               </li>
             {{/if}}
             {{#if isAdminSession}}
@@ -73,9 +79,7 @@
                 </ul>
               </li>
             {{/if}}
-            <li class="nav-items">
-              <a class="nav-link" href="/">Profile</a>
-            </li>
+
             <li class="nav-items">
               <a class="nav-link" href="/auth/logout">Logout</a>
             </li>

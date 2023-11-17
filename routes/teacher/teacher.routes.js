@@ -13,7 +13,32 @@ router.get("/", (req, res, next) => {
   res.render("teacher/home");
 });
 
-// GET "/teacher/courses" => renderiza la pagina courses del profesor
+// GET "/teacher/profile" => renderiza el profile del estudiante
+router.get("/profile", async (req, res, next) => {
+  try {
+    const userId = req.session.user._id;
+    let courses = [];
+    const user = await User.findById(userId).populate("enrolments");
+    if (user.enrolments.length > 1) {
+      user.enrolments.forEach(async (eachEnrolment) => {
+        let enrol = await Enrolment.findById(eachEnrolment._id).populate(
+          "courseId"
+        );
+        courses.push(await Course.findById(enrol.courseId._id));
+      });
+      res.render("teacher/profile", { user, courses });
+    } else {
+      let enrol = await Enrolment.findById(user.enrolments[0]._id).populate(
+        "courseId"
+      );
+
+      courses.push(await Course.findById(enrol.courseId._id));
+      res.render("teacher/profile", { user, courses });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 
 // GET "student/courses" => renderiza la pagina courses del estudiante
 router.get("/courses", isLoggedIn, async (req, res, next) => {

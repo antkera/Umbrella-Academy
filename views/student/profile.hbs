@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h3>Users Details</h3>
+        <div>
+          <h1>{{user.email}}</h1>
+          <div>
+            <h3>Name:</h3>
+            <h4>{{user.firstName}}</h4>
+            <h3>Last name:</h3>
+            <h4>{{user.lastName}}</h4>
+            <h3>Phone number:</h3>
+            <h4>{{user.phone}}</h4>
+            <h3>Educational level:</h3>
+            <h3>Age:</h3>
+            <h4>{{user.age}}</h4>
+            <h4>{{user.educativeLevel}}</h4>
+            <h3>Role:</h3>
+            <h4>{{user.role}}</h4>
+            <h3>Enrollments:</h3>
+            <ul>
+              {{#each courses}}
+                <li>{{this.name}}</li>
+              {{/each}}
+            </ul>
+            <h3>User created at:</h3>
+            <h4>{{user.fechaC}}</h4>
+            <h3>User updated at:</h3>
+            <h4>{{user.fechaU}}</h4>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

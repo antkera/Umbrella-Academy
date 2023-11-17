@@ -9,5 +9,5 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 L.marker([41.3977421, 2.1902493])
   .addTo(map)
-  .bindPopup("¡Hola! Aquí estamos.")
+  .bindPopup("¡Hello Ironhacker! Here we are.")
   .openPopup();
