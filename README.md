@@ -1,8 +1,8 @@
 # UMBRELLA ACADEMY
 
-## [Try It!]()
+## [Try It!](https://umbrellaacademyapp.adaptable.app/)
 
-![Game Logo](https://umbrellaacademyapp.adaptable.app/)
+![Game Logo](public\images\Umbrella_Academy_logo.png)
 
 # Description
 
@@ -15,62 +15,38 @@ Welcome to Umbrella academy, where knowledge meets inspiration, and learning kno
 - Create contents
 - Create enrolments
 - Content sharing
+- User management
 
 # Backlog Functionalities
 
-- List here all functionalities you wish to add to your proyect later.
+- Assistance Control
+- Content API
+- Improve content funcionalities
+- Hidden content
+- Log registration
+- Social media login
+- Email registration
 
 # Technologies used
 
-- List here all technologies used in the project like HTML, CSS, Javascript, DOM Manipulation, Local Storage, etc
-
-# States
-
-- List here the different screens of your game.
-
-# Proyect Structure
-
-- List here sections for your your different JS files.
-- One for main.js to manage DOM elements, one for the Game class and one for each other class file of your game.
-- Inside each file you can list the functions, clases, properties and methods of your code.
-
-Example:
-
-## main.js
-
-- list here the functions names of your main.js
-
-## Game.js
-
-- Game () {
-  this.player;
-  }
-
-## Player.js
-
-- Player () {
-  this.x;
-  this.y;
-  this.w;
-  this.h;
-  }
-- drawPlayer () {}
-- movePlayer () {}
+- HTML
+- CSS
+- Javascript
+- Bootstrap
+- Express
+- NodeJS
+- Mongoose
 
 # Extra Links
 
-### Sketch
-
-[Link](www.your-excalidraw-url-here.com)
-
 ### Trello
 
-[Link](www.your-trello-url-here.com)
+[Link](https://trello.com/b/wj9TTWqG/academy)
 
 ### Slides
 
-[Link](www.your-slides-url-here.com)
+[Link](https://docs.google.com/presentation/d/1d943LrMbw8NXjuiDveSBOix3E-6MH4o71WYY-JvwYio/edit#slide=id.g1209571f4d9_0_875)
 
 ## Deploy
 
-[Link](www.your-deploy-url-here.com)
+[Link](https://umbrellaacademyapp.adaptable.app/)
