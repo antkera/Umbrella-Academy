@@ -1,8 +1,6 @@
 # UMBRELLA ACADEMY
 
-## [Try It!](https://umbrellaacademyapp.adaptable.app/)
-
-![Game Logo](public\images\Umbrella_Academy_logo.png)
+![Program Logo](public/images/Umbrella_Academy_logo.png)
 
 # Description
 
